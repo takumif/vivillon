@@ -21,11 +21,12 @@ block content
         label I'm offering
         .form-vivillon-list#offering-list
           script.
-            var names = require('vivillons.js');
-            each name in names
-              displayname = name
-              name.replace(' ', "_")
-              li=option(data-img-scr=name+".png" value=name)displayname
+            select(multiple="multiple")
+              var names = require('vivillons.js');
+              each option, name in names
+                displayname = name
+                name.replace(' ', "_")
+                li=option(data-img-scr=#{name}+".png" value=#{name)displayname
       .form-group#want
         label I'm looking for
         .form-vivillon-list#want-list

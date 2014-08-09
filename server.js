@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var passport = require('passport');
-
-=======
-// server.js
-
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
 var app      = express();
->>>>>>> cd79c03d55f8ef669a9ef504494ebe1438d179b0
 var ip       = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port     = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var mongoose = require('mongoose');
@@ -41,13 +28,8 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(express.static(__dirname + '/public'));
 
-<<<<<<< HEAD
-// routes
-require('./app/routes')(app, passport);
 
-=======
 app.set('view engine', 'jade'); // set up ejs for templating
->>>>>>> cd79c03d55f8ef669a9ef504494ebe1438d179b0
 
 // required for passport
 app.use(session({ store: mongoStore, secret: sessionSecret })); // session secret
