@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,11 +6,32 @@ a {
   color: #00B7FF;
 }
 
-.form-vivillon-list {
-  width: 900px;
-  padding: 12px 0 0 12px;
+.login {
   border: 1px solid #ccc;
-  text-align: center;
+
+}
+
+
+
+.form-group {
+  width: 900px;
+  vertical-align: center;
+  margin: auto;
+}
+
+#offering, #want {
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+#offering label, #want label{
+  font-weight: bold;
+}
+
+.form-vivillon-list {
+  width: 890px;
+  padding: 13px 0 0 13px;
+  border: 1px solid #ccc;
   box-shadow: 2px 2px 3px 1px #ccc;
   background-color: white;
 }

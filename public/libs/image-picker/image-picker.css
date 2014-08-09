@@ -16,7 +16,7 @@ ul.thumbnails.image_picker_selector {
     float: none; }
   ul.thumbnails.image_picker_selector li {
     display: inline-block;
-    margin: 0px 12px 12px 0px;
+    margin: 1px 12px 12px 1px;
     float: left; }
     ul.thumbnails.image_picker_selector li .thumbnail {
       padding: 3px;
@@ -32,8 +32,9 @@ ul.thumbnails.image_picker_selector {
         font-size: 10px;
         text-align: center;
         -webkit-user-drag: none; }
-    ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      background: #E8E8E8; }
+   ul.thumbnails.image_picker_selector li .thumbnail.selected {
+      background: #E8E8E8;
+      box-shadow: 1px 1px 2px #606161; }
     ul.thumbnails.image_picker_selector li .thumbnail.selected p{
       font-weight: bold;}
 
