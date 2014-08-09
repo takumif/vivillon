@@ -31,7 +31,20 @@ block content
       .form-group#password
         label Confirm password
         input.form-control(type='password' name='passwordConfirm' required)
+      .form-group#offering
+            label I'm offering
+            .form-vivillon-list#offering-list
+              select.image-picker(multiple="multiple")
+                each name in names
+                  option(data-img-src="/images/"+name+".png" value=name)=name
+      .form-group#want
+        label I'm looking for
+        .form-vivillon-list#want-list
+          select.image-picker(multiple="multiple")
+            each name in names
+              option(data-img-src="/images/"+name+".png" value=name)=name
       button#registerButton(type='submit') Register
+
 
   .login
     p Log In
@@ -43,15 +56,3 @@ block content
         label Password
         input.form-control(type='password' name='password' required)
       button#registerButton(type='submit') Log In
-  .form-group#offering
-        label I'm offering
-        .form-vivillon-list#offering-list
-          select.image-picker(multiple="multiple")
-            each name in names
-              option(data-img-src="/images/"+name+".png" value=name)=name
-  .form-group#want
-    label I'm looking for
-    .form-vivillon-list#want-list
-      select.image-picker(multiple="multiple")
-        each name in names
-          option(data-img-src="/images/"+name+".png" value=name)=name
