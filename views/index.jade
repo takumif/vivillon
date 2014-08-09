@@ -2,6 +2,30 @@ extends layout
 
 block content
   p Welcome to the Global Vivillon Trade Station!
+  .content
+      each user in users
+        .userli
+          .userFc= user.fc
+          .userIgn= user.ign
+          .userOffering
+            p Offering
+            each offering in user.offering
+              img(src='/images/#{offering}.png' title='#{offering}')
+          .userLookingFor
+            p Looking for
+            each lookingFor in user.lookingFor
+              img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+
+  .login
+    p Log In
+    form(action='/login' method='post')
+      .form-group#loginFc
+        label Friend Code
+        input.form-control(type='text' name='fc' required)
+      .form-group#loginPassword
+        label Password
+        input.form-control(type='password' name='password' required)
+      button#registerButton(type='submit') Log In
   .registration
     p Register
     form(action='/register' method='post')
