@@ -4,6 +4,8 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+
 var ip       = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port     = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
@@ -54,6 +56,9 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+// routes
+require('./app/routes')(app, passport);
 
 
 app.listen(port, ip);

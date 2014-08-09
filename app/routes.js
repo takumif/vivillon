@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, passport) {
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+  // =====================================
+  // HOME PAGE (with login links) ========
+  // =====================================
+  app.get('/', function(req, res) {
+    if (req.isAuthenticated()) {
+      user = req.user; // wonder if this works
+      res.render('chat.ejs', {
+        user : req.user
+      });
+    } else {
+      res.render('index.ejs'); // load the index.ejs file
+    }
+  });
+}
