@@ -2,3 +2,5 @@
 
 app/database.js
 app/secret.js
+
+node_modules

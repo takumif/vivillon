@@ -1,5 +1,6 @@
 module.exports = function(app, passport) {
 
+<<<<<<< HEAD
   // =====================================
   // HOME PAGE (with login links) ========
   // =====================================
@@ -14,3 +15,14 @@ module.exports = function(app, passport) {
     }
   });
 }
+=======
+  app.get('/', function(req, res) {
+    if (req.isAuthenticated()) {
+      res.render('user');
+    } else {
+      console.log('not authenticated');
+      res.render('index');
+    }
+  });
+};
+>>>>>>> cd79c03d55f8ef669a9ef504494ebe1438d179b0
