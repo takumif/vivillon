@@ -35,39 +35,27 @@ module.exports = function(passport) {
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
+        usernameField : 'fc',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) {
+    function(req, fc, password, done) {
         
-        if (req.body.firstName == '' ||
-            req.body.lastName == '' ||
-            req.body.username == '' ||
-            email == '' ||
+        if (fc == '' ||
             password == '') {
             return done(null, false, req.flash('signupMessage', 'Fields cannot be empty.'));
         }
 
-        if (!validEmail(email)) {
-            return done(null, false, req.flash('signupMessage', 'Please enter a valid email address.'));
-        }
-
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
-        User.findOne({ 'email' :  email }, function(err, user) {
+        User.findOne({ 'fc' :  parseInt(fc) }, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
-
-        User.findOne({ 'username' : req.body.username }, function(err, user) {
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                return done(null, false, req.flash('signupMessage', 'That Friend Code is already registered.'));
             } else {
 
         // if there is no user with that email
@@ -75,20 +63,17 @@ module.exports = function(passport) {
                 var newUser            = new User();
 
                 // set the user's local credentials
-                newUser.firstName = req.body.firstName;
-                newUser.lastName = req.body.lastName;
-                newUser.username = req.body.username;
-                newUser.email    = email;
+                newUser.fc = fc;
+                newUser.ign    = req.body.ign;
                 newUser.password = newUser.generateHash(password); // use the generateHash function in our user model
-
+                newUser.offering = req.body.offering;
+                newUser.lookingFor = req.body.lookingFor;
         // save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
                     return done(null, newUser);
                 });
-            }
-        });
             }
         });
 
@@ -102,15 +87,15 @@ module.exports = function(passport) {
 
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
+        usernameField : 'fc',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) { // callback with email and password from our form
+    function(req, fc, password, done) { // callback with email and password from our form
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'email' :  email }, function(err, user) {
+        User.findOne({ 'fc' :  parseInt(fc) }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);

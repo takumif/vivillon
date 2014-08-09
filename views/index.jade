@@ -3,18 +3,18 @@ extends layout
 block content
   p Welcome to the Global Vivillon Trade Station!
   .content
-      each user in users
-        .userli
-          .userFc= user.fc
-          .userIgn= user.ign
-          .userOffering
-            p Offering
-            each offering in user.offering
-              img(src='/images/#{offering}.png' title='#{offering}')
-          .userLookingFor
-            p Looking for
-            each lookingFor in user.lookingFor
-              img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+    each user in users
+      .userli
+        .userFc= user.fc
+        .userIgn= user.ign
+        .userOffering
+          p Offering
+          each offering in user.offering
+            img(src='/images/#{offering}.png' title='#{offering}')
+        .userLookingFor
+          p Looking for
+          each lookingFor in user.lookingFor
+            img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
 
   .login
     p Log In
