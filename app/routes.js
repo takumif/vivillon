@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, passport) {
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+  app.get('/', function(req, res) {
+    if (req.isAuthenticated()) {
+      res.render('user');
+    } else {
+      console.log('not authenticated');
+      res.render('index');
+    }
+  });
+};
