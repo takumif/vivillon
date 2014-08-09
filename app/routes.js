@@ -8,7 +8,9 @@ module.exports = function(app, passport) {
       res.render('user');
     } else {
       console.log('not authenticated');
-      User.find(function(err, users) {
+      var users = [{fc: 1, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}, 
+      {fc: 2, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}];
+      User.find(function(err, PLACEHOLDERSHIT) {
         res.render('index', {
           users : users,
           names : names

@@ -9,8 +9,8 @@ var userSchema = mongoose.Schema({
   ign            : String,
   password       : String,
   requests       : [Number],
-  offering       : [Number],
-  lookingFor     : [Number]
+  offering       : [String],
+  lookingFor     : [String]
 });
 
 // methods ======================
