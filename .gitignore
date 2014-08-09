@@ -1,0 +1,4 @@
+.DS_Store
+
+app/database.js
+app/secret.js
