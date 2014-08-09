@@ -20,9 +20,13 @@ block content
       .form-group#offering
         label I'm offering
         .form-vivillon-list#offering-list
-          each name in names
-              li= name
+          select.image-picker(multiple="multiple")
+            each name in names
+              option(data-img-src="/images/"+name+".png" value=name)=name
       .form-group#want
         label I'm looking for
         .form-vivillon-list#want-list
+          select.image-picker(multiple="multiple")
+            each name in names
+              option(data-img-src="/images/"+name+".png" value=name)=name
       button#registerButton(type='submit') Register

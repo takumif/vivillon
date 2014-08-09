@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+.form-vivillon-list {
+  width: 900px;
+  padding: 12px 0 0 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-shadow: 2px 2px 3px 1px #ccc;
+  background-color: white;
+}
