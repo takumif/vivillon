@@ -1,4 +1,6 @@
 $(function() {
+  var offering = [];
+
   $("select").imagepicker({
     show_label: true
   });
@@ -7,3 +9,4 @@ $(function() {
 
   $("#fcInput").mask('0000-0000-0000');
 });
+§

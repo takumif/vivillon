@@ -36,6 +36,7 @@ a {
   /* W3C Markup, IE10 Release Preview */ 
   background-image: radial-gradient(circle closest-corner at center, #FFFFFF 0%, #E6E6E6 100%);
 }
+
   #regTitle {
     font-weight: bold;
     margin-bottom: 5px;
@@ -80,7 +81,7 @@ label span {
 #registerButton {
   height: 20px;
   width: 140px;
-  margin: 5px 45%;
+  margin: 5px 40%;
 }
 
 .form-vivillon-list {
