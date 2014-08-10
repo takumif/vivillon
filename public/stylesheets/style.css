@@ -1,4 +1,6 @@
 body {
+  width: 950px;
+  margin: auto;
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -67,10 +69,6 @@ a {
 
 #want {
   margin-top: 20px;
-}
-
-#offering label, #want label{
-  font-weight: bold;
 }
 
 label span {

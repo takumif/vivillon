@@ -14,10 +14,10 @@ module.exports = function(app, passport) {
       console.log('not authenticated');
 
       // dummy users
-      var users = [{fc: 1, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}, 
-      {fc: 2, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}];
+      // var users = [{fc: 1, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}, 
+      // {fc: 2, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}];
       
-      User.find(function(err, REPLACETHISWITHusers) {
+      User.find(function(err, users) {
         res.render('index', {
           users : users,
           names : names
@@ -27,13 +27,21 @@ module.exports = function(app, passport) {
   });
 
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/redirect', // redirect to the secure profile section
+    successRedirect : '/', // redirect to the secure profile section
+    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+  }));
+
+  app.post('/register', passport.authenticate('local-signup', {
+    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
 
-  app.post('/register', function(req, res) {
-    console.log(req.body);
+  app.get('/logout', function(req, res) {
+    req.session.destroy(function (err) {
+      res.redirect('/');
+    });
   });
 
 };

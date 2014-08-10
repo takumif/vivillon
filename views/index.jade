@@ -1,7 +1,48 @@
 extends layout
 
 block content
+  h1 GVTS
   p Welcome to the Global Vivillon Trade Station!
+  p Find users with the Vivillons you want!
+
+  .registration
+    p#regTitle Register
+    form(action='/register' method='post')
+      .regInfo
+        .form-group#ign
+          input.form-control#registerIgnInput(type='text' name='ign' placeholder="In-Game Name" required)
+        .form-group#fc
+          input.form-control#registerFcInput(name='fc' placeholder="Friend Code" required)
+        .form-group#password
+          input.form-control#registerPasswordInput(type='password' name='password' placeholder="Password" required)
+        .form-group#passConfirm
+          input.form-control#registerPasswordConfirmInput(type='password' name='passwordConfirm' placeholder="Confirm Password" required)
+      .form-group#offering
+            label I'm offering <span>(At least One)</span>
+            .form-vivillon-list#offering-list
+              select.image-picker#registerOfferingInput(multiple="multiple" name="offering" required)
+                each name in names
+                  option(data-img-src="/images/"+name+".png")=name
+      .form-group#want
+        label I'm looking for <span>(At least One)</span>
+        .form-vivillon-list#want-list
+          select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
+            each name in names
+              option(value=name data-img-src="/images/"+name+".png")=name
+        button#registerButton(type='submit') Vivillon Getto!
+
+
+  .login
+    p Log In
+    form(action='/login' method='post')
+      .form-group#loginFc
+        label Friend Code
+        input.form-control#loginFcInput(type='text' name='fc' required)
+      .form-group#loginPassword
+        label Password
+        input.form-control#loginPasswordInput(type='password' name='password' required)
+      button#registerButton(type='submit') Log In
+
   .content
     each user in users
       .userli
@@ -15,41 +56,3 @@ block content
           p Looking for
           each lookingFor in user.lookingFor
             img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-
-  .registration
-    p#regTitle Register
-    form(action='/register' method='post')
-      .regInfo
-        .form-group#ign
-          input.form-control(type='text' name='ign' placeholder="In-Game Name" required)
-        .form-group#fc
-          input.form-control#fcInput(name='fc' placeholder="Friend Code" required)
-        .form-group#password
-          input.form-control(type='password' name='password' placeholder="Password" required)
-        .form-group#passConfirm
-          input.form-control(type='password' name='passwordConfirm' placeholder="Confirm Password" required)
-      .form-group#offering
-            label I'm offering <span>(At least One)</span>
-            .form-vivillon-list#offering-list
-              select.image-picker(multiple="multiple" name="offering" required)
-                each name in names
-                  option(data-img-src="/images/"+name+".png")=name
-      .form-group#want
-        label I'm looking for <span>(At least One)</span>
-        .form-vivillon-list#want-list
-          select.image-picker(multiple="multiple" name="lookingFor" required)
-            each name in names
-              option(value=name data-img-src="/images/"+name+".png")=name
-        button#registerButton(type='submit') Vivillon Getto!
-
-
-  .login
-    p Log In
-    form(action='/login' method='post')
-      .form-group#loginFc
-        label Friend Code
-        input.form-control(type='text' name='fc' required)
-      .form-group#loginPassword
-        label Password
-        input.form-control(type='password' name='password' required)
-      button#registerButton(type='submit') Log In
