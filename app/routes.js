@@ -32,4 +32,8 @@ module.exports = function(app, passport) {
     failureFlash : true // allow flash messages
   }));
 
+  app.post('/register', function(req, res) {
+    console.log(req.body);
+  })
+
 };
