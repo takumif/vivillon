@@ -1,5 +1,7 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 950px;
+  margin: auto;
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -8,28 +10,80 @@ a {
 
 .login {
   border: 1px solid #ccc;
+  width: ;
 
 }
 
-
-
-.form-group {
-  width: 900px;
+.registration, .login {
+  border: 1px solid #ccc;
+  padding-left: 20px;
+  width: 925px;
   vertical-align: center;
   margin: auto;
+  /* IE10 Consumer Preview */ 
+  background-image: -ms-radial-gradient(center, circle closest-corner, #FFFFFF 0%, #E6E6E6 100%);
+
+  /* Mozilla Firefox */ 
+  background-image: -moz-radial-gradient(center, circle closest-corner, #FFFFFF 0%, #E6E6E6 100%);
+
+  /* Opera */ 
+  background-image: -o-radial-gradient(center, circle closest-corner, #FFFFFF 0%, #E6E6E6 100%);
+
+  /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FFFFFF), color-stop(1, #E6E6E6));
+
+  /* Webkit (Chrome 11+) */ 
+  background-image: -webkit-radial-gradient(center, circle closest-corner, #FFFFFF 0%, #E6E6E6 100%);
+
+  /* W3C Markup, IE10 Release Preview */ 
+  background-image: radial-gradient(circle closest-corner at center, #FFFFFF 0%, #E6E6E6 100%);
+}
+  #regTitle {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .regInfo {
+    width: 420px;
+    height: 70px;
+    padding-bottom: 3px;
+    padding-left: 11px;
+    margin-left: 0px;
+  }
+
+  input {
+    height: 18px;
+    width: 200px;
+    margin: 3px 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+
+  #ign, #password {
+    float: left;
+  }
+
+  #fc, #passConfirm {
+    float: right;
+  }
+
+#want {
+  margin-top: 20px;
 }
 
-#offering, #want {
-  margin-top: 25px;
-  margin-bottom: 5px;
+label span {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #aa3355;
 }
 
-#offering label, #want label{
-  font-weight: bold;
+#registerButton {
+  height: 20px;
+  width: 140px;
+  margin: 5px 45%;
 }
 
 .form-vivillon-list {
   width: 890px;
+  margin-top: 3px;
   padding: 13px 0 0 13px;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 3px 1px #ccc;

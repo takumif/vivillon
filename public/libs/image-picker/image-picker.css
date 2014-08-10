@@ -28,6 +28,7 @@ ul.thumbnails.image_picker_selector {
         height:70px;
         -webkit-user-drag: none; }
       ul.thumbnails.image_picker_selector li .thumbnail p {
+        font-weight: none;
         margin: 0;
         font-size: 10px;
         text-align: center;

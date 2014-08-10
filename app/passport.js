@@ -40,15 +40,22 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, fc, password, done) {
+        if (!validFC(fc)) {
+            return done(null, false, req.flash('signupMessage', 'Invalid Friend Code.'));
+        }
+
+        fc = parseInt(fc.replace(/-/g, ''));
         
-        if (fc == '' ||
-            password == '') {
+        if (req.body.ign == '' ||
+            password == '' ||
+            req.body.offering == null ||
+            req.body.lookingFor == null) {
             return done(null, false, req.flash('signupMessage', 'Fields cannot be empty.'));
         }
 
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
-        User.findOne({ 'fc' :  parseInt(fc) }, function(err, user) {
+        User.findOne({ 'fc' :  fc }, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
@@ -60,7 +67,7 @@ module.exports = function(passport) {
 
         // if there is no user with that email
                 // create the user
-                var newUser            = new User();
+                var newUser = new User();
 
                 // set the user's local credentials
                 newUser.fc = fc;
@@ -92,6 +99,9 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, fc, password, done) { // callback with email and password from our form
+        if (!validFC(fc)) {
+            return done(null, false, req.flash('loginMessage', 'Invalid Friend Code.'));
+        }
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
@@ -116,7 +126,6 @@ module.exports = function(passport) {
 
 };
 
-function validEmail(email) { 
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-} 
+function validFC(fc) {
+    return /^([0-9]{12})$/.test(fc.replace(/-/g, ''));
+}

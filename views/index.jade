@@ -1,36 +1,35 @@
 extends layout
 
 block content
+  h1 GVTS
   p Welcome to the Global Vivillon Trade Station!
+  p Find users with the Vivillons you want!
 
   .registration
-    p Register
+    p#regTitle Register
     form(action='/register' method='post')
-      .form-group#ign
-        label In-game Name
-        input.form-control(type='text' name='ign' required)
-      .form-group#fc
-        label Friend Code
-        input.form-control(type='text' name='fc' required)
-      .form-group#password
-        label Password
-        input.form-control(type='password' name='password' required)
-      .form-group#password
-        label Confirm password
-        input.form-control(type='password' name='passwordConfirm' required)
+      .regInfo
+        .form-group#ign
+          input.form-control#registerIgnInput(type='text' name='ign' placeholder="In-Game Name" required)
+        .form-group#fc
+          input.form-control#registerFcInput(name='fc' placeholder="Friend Code" required)
+        .form-group#password
+          input.form-control#registerPasswordInput(type='password' name='password' placeholder="Password" required)
+        .form-group#passConfirm
+          input.form-control#registerPasswordConfirmInput(type='password' name='passwordConfirm' placeholder="Confirm Password" required)
       .form-group#offering
-            label I'm offering
+            label I'm offering <span>(At least One)</span>
             .form-vivillon-list#offering-list
-              select.image-picker(multiple="multiple")
+              select.image-picker#registerOfferingInput(multiple="multiple" name="offering" required)
                 each name in names
-                  option(data-img-src="/images/"+name+".png" value=name)=name
+                  option(data-img-src="/images/"+name+".png")=name
       .form-group#want
-        label I'm looking for
+        label I'm looking for <span>(At least One)</span>
         .form-vivillon-list#want-list
-          select.image-picker(multiple="multiple")
+          select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
             each name in names
-              option(data-img-src="/images/"+name+".png" value=name)=name
-      button#registerButton(type='submit') Register
+              option(value=name data-img-src="/images/"+name+".png")=name
+        button#registerButton(type='submit') Vivillon Getto!
 
 
   .login
@@ -38,10 +37,10 @@ block content
     form(action='/login' method='post')
       .form-group#loginFc
         label Friend Code
-        input.form-control(type='text' name='fc' required)
+        input.form-control#loginFcInput(type='text' name='fc' required)
       .form-group#loginPassword
         label Password
-        input.form-control(type='password' name='password' required)
+        input.form-control#loginPasswordInput(type='password' name='password' required)
       button#registerButton(type='submit') Log In
 
   .content
