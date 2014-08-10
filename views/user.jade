@@ -17,6 +17,10 @@ block content
         p Looking for
         each lookingFor in me.lookingFor
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+      button#updateButton(onclick="location.href ='/update';") Update
+      
+  .right
+      h2 Messages
 
   .content
     .left
@@ -33,4 +37,4 @@ block content
             p Looking for
             each lookingFor in user.lookingFor
               img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-    .right
+

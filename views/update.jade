@@ -1,0 +1,23 @@
+extend layout
+
+block content
+  h1 Update your Vivillon selection!
+
+  form(action='/update' method='post')
+    .offering
+      p Currently offering:
+      select.image-picker#offeringList(multiple="multiple" name="offering" required)
+        each name in names
+          if (user.offering.indexOf(name) != -1)
+            option(data-img-src="/images/"+name+".png" selected="selected")=name
+          else
+            option(data-img-src="/images/"+name+".png")=name
+    .want
+      p Currently looking for:
+      select.image-picker#lookingForList(multiple="multiple" name="lookingFor" required)
+         each name in names
+          if (user.lookingFor.indexOf(name) != -1)
+            option(data-img-src="/images/"+name+".png" selected="selected")=name
+          else
+            option(data-img-src="/images/"+name+".png")=name
+    button(type='submit') Find me Vivillons

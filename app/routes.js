@@ -27,6 +27,22 @@ module.exports = function(app, passport) {
     }
   });
 
+
+  app.get('/update', function(req, res) {
+    res.render('update', {
+      user : req.user,
+      names : names
+     });
+  });
+
+  app.post('/update', function(req, res) {
+    console.log(req.body.offering)
+    req.user.offering = req.body.offering;
+    req.user.lookingFor = req.body.lookingFor;
+    req.user.save();
+    res.redirect('/');
+  })
+
   app.post('/login', passport.authenticate('local-login', {
     successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/', // redirect back to the signup page if there is an error
@@ -44,5 +60,6 @@ module.exports = function(app, passport) {
       res.redirect('/');
     });
   });
+
 
 };

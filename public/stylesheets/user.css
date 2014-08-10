@@ -11,3 +11,14 @@ a {
   height: 90px;
   margin-right: 3px;
 }
+
+.right {
+  float: right;
+  width: 300px;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.left { 
+  float: left;
+}
