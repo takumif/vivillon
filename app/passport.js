@@ -103,7 +103,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'fc' :  parseInt(fc) }, function(err, user) {
+        User.findOne({ 'fc' :  fc }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
