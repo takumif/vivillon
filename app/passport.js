@@ -103,6 +103,8 @@ module.exports = function(passport) {
             return done(null, false, req.flash('loginMessage', 'Invalid Friend Code.'));
         }
 
+        fc = parseInt(fc.replace(/-/g, ''));
+
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'fc' :  parseInt(fc) }, function(err, user) {

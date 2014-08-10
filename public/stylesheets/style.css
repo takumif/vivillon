@@ -45,7 +45,6 @@ a {
 
   .regInfo {
     width: 420px;
-    height: 70px;
     padding-bottom: 3px;
     padding-left: 11px;
     margin-left: 0px;
@@ -82,7 +81,7 @@ label span {
 }
 
 .form-vivillon-list {
-  width: 890px;
+  width: 870px;
   margin-top: 3px;
   padding: 13px 0 0 13px;
   border: 1px solid #ccc;
