@@ -45,10 +45,9 @@ a {
   }
 
   .regInfo {
-    width: 420px;
-    height: 70px;
+    width: 940px;
+    height: 35px;
     padding-bottom: 3px;
-    padding-left: 11px;
     margin-left: 0px;
   }
 
@@ -59,12 +58,23 @@ a {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   }
 
-  #ign, #password {
+ #passConfirm {
+    float: left;
+    margin-left: 9px;
+  } 
+  #password{
+    margin-left: 130px;
+    float: left;
+  }
+  #ign {
     float: left;
   }
 
-  #fc, #passConfirm {
-    float: right;
+  #registerFcInput{
+    float: left;
+    margin-left: 9px;
+    width: 130px;
+    padding-left: 4px;
   }
 
 #want {
