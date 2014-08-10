@@ -7,7 +7,8 @@ module.exports = function(app, passport) {
     if (req.isAuthenticated()) {
       User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
         res.render('user', {
-          users : users
+          users : users,
+          me : req.user
         });
       });
     } else {

@@ -1,12 +1,26 @@
 extends layout
 
+block head
+  link(rel='stylesheet' href='/stylesheets/user.css')
+
 block content
   a(href='/logout') logout
   .userInfo
     p Your Info
+      .selFc= me.fc
+      .selfIgn= me.ign
+      .selfOffering
+        p Offering
+        each offering in me.offering
+          img(src='/images/#{offering}.png' title='#{offering}')
+      .selfLookingFor
+        p Looking for
+        each lookingFor in me.lookingFor
+          img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+
   .content
     .left
-      p Users with Vivillons you want
+      p People with Vivillons you want
       each user in users
         .userli
           .userFc= user.fc

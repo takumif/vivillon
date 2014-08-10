@@ -1,0 +1,13 @@
+body {
+  margin: auto;
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.selfLookingFor img, .selfOffering img {
+  height: 90px;
+  margin-right: 3px;
+}
