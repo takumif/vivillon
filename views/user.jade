@@ -4,13 +4,12 @@ block head
   link(rel='stylesheet' href='/stylesheets/user.css')
 
 block content
-  a(href='/logout') logout
   .userInfo
-    .written
-      h3 Your Info
+    .topbar
       .selfIgn= me.ign
       .selFc= me.fc
-      button#updateButton.pure-button(onclick="location.href ='/update';") Update
+      button#updateButton(onclick="location.href ='/update';")
+      a#logout(href='/logout') logoutUpdate
     .vivillonLists
       .selfOffering
         p Offering

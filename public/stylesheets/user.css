@@ -31,16 +31,24 @@ img {
   overflow: hidden;
 }
 
-.written {
-  width: 190px;
-  float: left;
-  padding: 60px 30px 0 20px;
+.topbar {
+  overflow: hidden;
+  width: 100%;
+  background-color: #ccc;
+  padding: 0 10px;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
+  .selfIgn, .selfFc {
+    float: left;
+    margin-right: 20px;
+  }
+
+  #updateButton, #logout {
+  }
 
 h3 {
-  margin-bottom: 9px;
+  margin: 9px auto;
 }
 
 .vivillonLists {
@@ -51,10 +59,4 @@ h3 {
 
 .vivillonLists p{
   margin: 4px auto;
-}
-
-button {
-  margin-top: 30px;
-  vertical-align: middle;
-  margin-left: 40px;
 }
