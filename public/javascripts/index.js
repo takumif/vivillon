@@ -1,3 +1,9 @@
 $(function() {
-  $("select").imagepicker({show_label: true})
+  $("select").imagepicker({
+    show_label: true
+  });
+
+
+
+  $("#fcInput").mask('0000-0000-0000');
 });
