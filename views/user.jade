@@ -26,15 +26,16 @@ block content
     .left
       p People with Vivillons you want
       each user in users
-        .userli
-          .userFc= user.fc
-          .userIgn= user.ign
-          .userOffering
-            p Offering
-            each offering in user.offering
-              img(src='/images/#{offering}.png' title='#{offering}')
-          .userLookingFor
-            p Looking for
-            each lookingFor in user.lookingFor
-              img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+        if user.fc != me.fc
+          .userli
+            .userFc= user.fc
+            .userIgn= user.ign
+            .userOffering
+              p Offering
+              each offering in user.offering
+                img(src='/images/#{offering}.png' title='#{offering}')
+            .userLookingFor
+              p Looking for
+              each lookingFor in user.lookingFor
+                img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
 

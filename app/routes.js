@@ -13,10 +13,6 @@ module.exports = function(app, passport) {
       });
     } else {
       console.log('not authenticated');
-
-      // dummy users
-      // var users = [{fc: 1, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}, 
-      // {fc: 2, ign: 'asdf', offering: ['Monsoon'], lookingFor: ['Monsoon']}];
       
       User.find(function(err, users) {
         res.render('index', {

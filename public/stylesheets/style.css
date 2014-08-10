@@ -8,6 +8,22 @@ a {
   color: #00B7FF;
 }
 
+button {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 7px 10px 10px 10px;
+  height: 30px;
+}
+
+button:active {
+  background-color: #fcfcfc;
+  border: 1px solid #ccc;
+}
+
+button:focus {
+  outline: 0;
+}
+
 .login {
   border: 1px solid #ccc;
   width: ;
@@ -47,6 +63,7 @@ a {
   .regInfo {
     width: 940px;
     height: 35px;
+    padding-top: 7px;
     padding-bottom: 3px;
     margin-left: 0px;
   }
@@ -84,12 +101,6 @@ a {
 label span {
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #aa3355;
-}
-
-#registerButton {
-  height: 20px;
-  width: 140px;
-  margin: 5px 40%;
 }
 
 .form-vivillon-list {
