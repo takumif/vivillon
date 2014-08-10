@@ -1,4 +1,6 @@
 $(function() {
+  var offering = [];
+
   $("select").imagepicker({
     show_label: true
   });

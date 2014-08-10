@@ -17,19 +17,19 @@ block content
           input.form-control#registerPasswordInput(type='password' name='password' placeholder="Password" required)
         .form-group#passConfirm
           input.form-control#registerPasswordConfirmInput(type='password' name='passwordConfirm' placeholder="Confirm Password" required)
-        .form-group#offering
-              label I'm offering <span>(At least One)</span>
-              .form-vivillon-list#offering-list
-                select.image-picker#registerOfferingInput(multiple="multiple" name="offering" required)
-                  each name in names
-                    option(data-img-src="/images/"+name+".png")=name
-        .form-group#want
-          label I'm looking for <span>(At least One)</span>
-          .form-vivillon-list#want-list
-            select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
-              each name in names
-                option(value=name data-img-src="/images/"+name+".png")=name
-        button#registerButton(type='submit') Vivillon Getto!
+      .form-group#offering
+            label I'm offering <span>(At least One)</span>
+            .form-vivillon-list#offering-list
+              select.image-picker#registerOfferingInput(multiple="multiple" name="offering" required)
+                each name in names
+                  option(data-img-src="/images/"+name+".png")=name
+      .form-group#want
+        label I'm looking for <span>(At least One)</span>
+        .form-vivillon-list#want-list
+          select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
+            each name in names
+              option(value=name data-img-src="/images/"+name+".png")=name
+      button#registerButton(type='submit') Vivillon Getto!
 
 
   .login

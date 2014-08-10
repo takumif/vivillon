@@ -25,7 +25,7 @@ ul.thumbnails.image_picker_selector {
       -moz-user-select: none;
       -ms-user-select: none; }
       ul.thumbnails.image_picker_selector li .thumbnail img {
-        height:68px;
+        height:70px;
         -webkit-user-drag: none; }
       ul.thumbnails.image_picker_selector li .thumbnail p {
         font-weight: none;
