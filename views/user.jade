@@ -6,9 +6,12 @@ block head
 block content
   a(href='/logout') logout
   .userInfo
-    p Your Info
-      .selFc= me.fc
+    .written
+      h3 Your Info
       .selfIgn= me.ign
+      .selFc= me.fc
+      button#updateButton.pure-button(onclick="location.href ='/update';") Update
+    .vivillonLists
       .selfOffering
         p Offering
         each offering in me.offering
@@ -17,7 +20,6 @@ block content
         p Looking for
         each lookingFor in me.lookingFor
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-      button#updateButton(onclick="location.href ='/update';") Update
       
   .right
       h2 Messages
