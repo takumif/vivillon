@@ -7,9 +7,9 @@ block content
   .userInfo
     .topbar
       .selfIgn= me.ign
-      .selFc= me.fc
-      button#updateButton(onclick="location.href ='/update';")
-      a#logout(href='/logout') logoutUpdate
+      .selfFc= me.fc
+      button#logoutButton(onclick="location.href ='/logout';") Logout
+      button#updateButton(onclick="location.href ='/update';") Update
     .vivillonLists
       .selfOffering
         p Offering

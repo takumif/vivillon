@@ -26,25 +26,29 @@ img {
 
 .userInfo {
   width: 870px;
-  margin: 50px auto 30px auto;
+  margin: 30px auto 30px auto;
   border: 1px solid #CCC;
   overflow: hidden;
 }
 
 .topbar {
+  padding: 3px 0;
   overflow: hidden;
   width: 100%;
   background-color: #ccc;
-  padding: 0 10px;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
   .selfIgn, .selfFc {
     float: left;
-    margin-right: 20px;
+    height: 23px;
+    margin: auto 20px;
   }
 
-  #updateButton, #logout {
+  #updateButton, #logoutButton {
+    float: right;
+    margin: auto 20px;
+    padding: 4px 8px;
   }
 
 h3 {
@@ -52,9 +56,8 @@ h3 {
 }
 
 .vivillonLists {
-  float: right;
-  width: 583px;
-  padding-right: 20px;
+  padding: 0 20px;
+  font-weight: bold;
 }
 
 .vivillonLists p{
