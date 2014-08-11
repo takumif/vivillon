@@ -18,17 +18,23 @@ block content
         p Looking for
         each lookingFor in user.lookingFor
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-  .left.ask
-    p Ask #{user.ign} to add you
-    br
-    form(action='/sendMessage' method='post')
-      input(type='hidden' name='recipient' value='#{user.fc}')
-      input(type='hidden' name='content' value='addme')
-      button#addButton(type='submit') Add me!
-  .right.sendMessage
-    p Send #{user.ign} a message
-    br
-    form.sendMessageForm(action='/sendMessage' method='post')
-      input(type='hidden' name='recipient' value='#{user.fc}')
-      textarea(name='content' placeholder='Add me!')
-      button#sendButton(type='submit') Send
+
+  if (logged_in)
+    .left.ask
+      p Ask #{user.ign} to add you
+      br
+      if (asked)
+        p Asked!
+      else
+        form(action='/sendMessage' method='post')
+          input(type='hidden' name='recipient' value='#{user.fc}')
+          input(type='hidden' name='content' value='addme')
+          button#addButton(type='submit') Add me!
+
+    .right.sendMessage
+      p Send #{user.ign} a message
+      br
+      form.sendMessageForm(action='/sendMessage' method='post')
+        input(type='hidden' name='recipient' value='#{user.fc}')
+        textarea#messageTextarea(name='content' placeholder='Hi!')
+        button#sendButton(type='submit') Send

@@ -1,5 +1,8 @@
 extend layout
 
+block head
+  link(rel='stylesheet' href='/stylesheets/update.css')
+
 block content
   h1 Update your Vivillon selection!
 
@@ -20,5 +23,6 @@ block content
             option(data-img-src="/images/"+name+".png" selected="selected")=name
           else
             option(data-img-src="/images/"+name+".png")=name
-    button(type='submit') Update
-    button(type='button' onclick="location.href ='/'") Cancel
+    .centered.buttons
+      button(type='submit') Update
+      button(type='button' onclick="location.href ='/'") Cancel

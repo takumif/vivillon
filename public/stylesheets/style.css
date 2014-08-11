@@ -49,11 +49,11 @@ button {
 }
 
 button:hover {
-  background-color: #fcfcfc;
+  background-color: #eee;
 }
 
 button:active {
-  background-color: #eee;
+  background-color: #ccc;
 }
 
 button:focus {
@@ -113,7 +113,7 @@ label span {
     width: 600px;
   }
 
-.othersInfo img {
+img.smallVivillon {
   height: 60px;
 }
 
@@ -190,3 +190,7 @@ label span {
   h2 {
     margin: 8px 0;
   }
+
+.buttons {
+  margin: 15px 0 10px 0;
+}

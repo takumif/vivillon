@@ -48,17 +48,17 @@ block content
 
   .content
     each user in users
-      .userInfo.othersInfo
+      .userInfo
         .topbar
-          .userFc= user.fc
           .userIgn= user.ign
+          .userFc= user.fc
         .vivillonLists
           .userOffering
             p Offering
             each offering in user.offering
-              img(src='/images/#{offering}.png' title='#{offering}')
+              img.smallVivillon(src='/images/#{offering}.png' title='#{offering}')
           hr
           .userLookingFor
             p Looking for
             each lookingFor in user.lookingFor
-              img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+              img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
