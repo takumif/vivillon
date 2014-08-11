@@ -26,6 +26,16 @@ $(function() {
       event.preventDefault();
     }
   });
+
+  $('.toggleVivillons').click(function(event) {
+    $('.irrelevant').toggle();
+    if ($('.toggleVivillons').html() == 'Show irrelevant patterns') {
+      $('.toggleVivillons').html('Hide irrelevant patterns');
+    } else {
+      $('.toggleVivillons').html('Show irrelevant patterns');
+    }
+  });
+
 });
 
 function validFC(fc) {

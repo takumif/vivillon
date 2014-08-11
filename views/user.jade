@@ -38,8 +38,9 @@ block content
       
   .left
     p People with Vivillons you want
+    .toggleVivillons Show irrelevant patterns
     each user in users
-      if user.fc != me.fc
+      if (user.fc != me.fc)
         .userInfo.othersInfo
           .topbar
             .userIgn
@@ -49,10 +50,16 @@ block content
             .userOffering
               p Offering
               each offering in user.offering
-                img.smallVivillon(src='/images/#{offering}.png' title='#{offering}')
+                if (me.lookingFor.indexOf(offering) != -1)
+                  img.smallVivillon(src='/images/#{offering}.png' title='#{offering}')
+                else
+                  img.smallVivillon.irrelevant(src='/images/#{offering}.png' style='display: none;' title='#{offering}')
             hr
             .userLookingFor
               p Looking for
               each lookingFor in user.lookingFor
-                img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+                if (me.offering.indexOf(lookingFor) != -1)
+                  img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+                else
+                  img.smallVivillon.irrelevant(src='/images/#{lookingFor}.png' style='display: none;' title='#{lookingFor}')
 
