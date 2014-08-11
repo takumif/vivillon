@@ -1,7 +1,15 @@
 body {
+  background-color: #eee;
+  margin: 0;
+}
+
+.main {
+  background-color: white;
   width: 950px;
   margin: auto;
+  padding: 20px;
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
 a {
@@ -15,13 +23,20 @@ button {
   height: 30px;
 }
 
-button:active {
+button:hover {
   background-color: #fcfcfc;
-  border: 1px solid #ccc;
+}
+
+button:active {
+  background-color: #eee;
 }
 
 button:focus {
   outline: 0;
+}
+
+.centered {
+  text-align: center;
 }
 
 .login {
@@ -110,4 +125,12 @@ label span {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 3px 1px #ccc;
   background-color: white;
+}
+
+.left {
+  width: 650px;
+}
+
+.right {
+  width: 300px;
 }

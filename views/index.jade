@@ -1,12 +1,13 @@
 extends layout
 
 block content
-  h1 GVTS
-  p Welcome to the Global Vivillon Trade Station!
-  p Find users with the Vivillons you want!
+  .centered
+    h1 GVTS
+    p Welcome to the Global Vivillon Trade Station!
+    p Find users with the Vivillons you want!
 
   .registration
-    p#regTitle Register
+    h3 Register
     form(action='/register' method='post')
       .regInfo
         .form-group#ign
@@ -29,11 +30,11 @@ block content
           select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
             each name in names
               option(value=name data-img-src="/images/"+name+".png")=name
-      button#registerButton(type='submit') Vivillon Getto!
+      button#registerButton(type='submit') Register
 
 
   .login
-    p Log In
+    h3 Log In
     form(action='/login' method='post')
       .form-group#loginFc
         label Friend Code
@@ -41,7 +42,7 @@ block content
       .form-group#loginPassword
         label Password
         input.form-control#loginPasswordInput(type='password' name='password' required)
-      button#registerButton(type='submit') Log In
+      button#registerButton(type='submit') Log in
 
   .content
     each user in users
