@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
   app.get('/', function(req, res) {
     if (req.isAuthenticated()) {
       User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
-        Message.find( { to : req.user.fc }, function(err, messages) {
+        Message.find( { toFc : req.user.fc }, function(err, messages) {
           res.render('user', {
             users : users,
             me : req.user,

@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var messageSchema = mongoose.Schema({
-  from           : String,
-  to             : String,
+  fromFc         : String,
+  fromIgn        : String,
+  toFc           : String,
+  toIgn          : String,
   date           : Date,
   content        : String
 });
