@@ -42,6 +42,10 @@ img {
   padding: 7px 0 7px 10px;
 }
 
+.message a {
+   color: #555;
+}
+
 .messageTime {
   font: 11px 'Calibri', sans-serif;
   float: right;

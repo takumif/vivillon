@@ -30,7 +30,7 @@ block content
           - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
           .messageTime= date
           if (message.content == 'addme')
-            .addme.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> wants you to add them!
+            .addme.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
           else
             .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
             .messageContent= message.content
