@@ -6,21 +6,11 @@ module.exports = function(app, passport) {
 
   app.get('/', function(req, res) {
     if (req.isAuthenticated()) {
-      User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
-        Message.find( { toFc : req.user.fc }).sort('-date').exec(function(err, messages) {
-          res.render('user', {
-            users : users,
-            me : req.user,
-            messages : messages,
-            offeringList : peopleLookup(users, true),
-            lookingForList : peopleLookup(users, false)
-          });
-        })
-      });
+      res.redirect('/user/' + req.user.fc);
     } else {
       console.log('not authenticated');
       
-      User.find().limit(5).find(function(err, users) {
+      User.find().sort('-_id').limit(5).exec(function(err, users) {
         res.render('index', {
           users : users,
           names : names
@@ -66,21 +56,44 @@ module.exports = function(app, passport) {
   app.get('/redirect', function(req, res) {
     setTimeout(function() {
       res.redirect('/');
-    }, 500);
+    }, 100);
+  });
+
+  app.get('/login', function(req, res) {
+    setTimeout(function() {
+      if (req.isAuthenticated()) {
+        res.redirect('/');
+      } else {
+        res.redirect('/login');
+      }
+    }, 100);
   });
 
   app.get('/user/:fc', function(req, res) {
-    console.log(req.params.fc);
     User.findOne({ fc : req.params.fc }, function(err, user) {
       if (user) {
         if (req.isAuthenticated()) {
-          Message.findOne({ toFc : user.fc, fromFc : req.user.fc, content : 'addme' }, function(err, addme) {
-            res.render('userInfo', {
-              user : user,
-              asked : Boolean(addme),
-              logged_in : true,
+          if (user.fc == req.user.fc) {
+            User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
+              Message.find( { toFc : req.user.fc }).sort('-date').exec(function(err, messages) {
+                res.render('user', {
+                  users : users,
+                  me : req.user,
+                  messages : messages,
+                  offeringList : peopleLookup(users, true),
+                  lookingForList : peopleLookup(users, false)
+                });
+              })
             });
-          });
+          } else {
+            Message.findOne({ toFc : user.fc, fromFc : req.user.fc, content : 'addme' }, function(err, addme) {
+              res.render('userInfo', {
+                user : user,
+                asked : Boolean(addme),
+                logged_in : true,
+              });
+            });
+          }
         } else {
           res.render('userInfo', { user : user, logged_in : false });
         }

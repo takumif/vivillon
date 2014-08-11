@@ -187,7 +187,7 @@ img.smallVivillon {
   border-left: 2px solid #ccc;
 }
 
-h2 {
+.messagesTitle {
     padding: 5px 0 5px 15px;
     border-bottom: 2px solid #ccc;
     margin: 0;

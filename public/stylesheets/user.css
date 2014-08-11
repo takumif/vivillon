@@ -24,6 +24,23 @@ img {
   margin: 15px auto;
 }
 
+.toggleVivillons {
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 5px 0 10px 10px;
+  display: inline-block;
+}
+
+.filterSelection {
+  margin-left: 10px;
+}
+
+.labelSpan {
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
 /*=======================================
 ----------MESSAGE RELATED STUFF
 =======================================*/
