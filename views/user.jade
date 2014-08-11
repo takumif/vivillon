@@ -42,7 +42,7 @@ block content
   .left
     p People with Vivillons you want
     .toggleVivillons Show irrelevant patterns
-    .fliterSelection Offering Looking For
+    .fliterSelection Search for people that: Offer    Look For
       select.offeringSelection
         option All
         each offer in me.lookingFor
@@ -51,6 +51,7 @@ block content
         option All
         each offer in me.offering
           option= offer
+    .noOffersFound No offers found with this combination!
     each user in users
       if (user.fc != me.fc)
         .userInfo.othersInfo(id='#{user.fc}')

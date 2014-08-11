@@ -82,4 +82,9 @@ function applySelection() {
       }
     }
   }
+  if (people.length == 0 && offering != 'All') {
+    $('.noOffersFound').css('display', 'block');
+  } else {
+    $('.noOffersFound').css('display', 'none');
+  }
 }

@@ -24,47 +24,57 @@ img {
   margin: 15px auto;
 }
 
+/*=======================================
+----------MESSAGE RELATED STUFF
+=======================================*/
 
 .sendMessage {
   width: 48%;
   text-align: center;
 }
 
-.messageContainer {
-  width: 300px;
-  height: 100%;
-  padding-left: 0;
-  border: none;
+  .messageContainer {
+    width: 300px;
+    height: 100%;
+    padding-left: 0;
+    border: none;
+  }
+
+  .message {
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+    padding: 7px 0 7px 10px;
+  }
+
+  .message a {
+     color: #555;
+  }
+
+  .messageTime {
+    font: 11px 'Calibri', sans-serif;
+    float: right;
+    color: darkgrey;
+    padding: 9px 10px 0 0;
+  }
+
+  .messageContent {
+    font-size: 13px;
+    margin: 5px 10px 8px 7px;
+    border-left: 2px solid #ccc;
+    padding-left: 7px;
+  }
+
+  .messageSubject {
+    margin: 7px 10px 8px 0;
+  }
+
+.offeringSelection, .lookingForSelection {
+  .float: left;
 }
 
-.message {
-  font-size: 14px;
-  border-bottom: 1px solid #ccc;
-  padding: 7px 0 7px 10px;
+.noOffersFound {
+  display: none;
 }
-
-.message a {
-   color: #555;
-}
-
-.messageTime {
-  font: 11px 'Calibri', sans-serif;
-  float: right;
-  color: darkgrey;
-  padding: 9px 10px 0 0;
-}
-
-.messageContent {
-  font-size: 13px;
-  margin: 5px 10px 8px 7px;
-  border-left: 2px solid #ccc;
-  padding-left: 7px;
-}
-
-.messageSubject {
-  margin: 7px 10px 8px 0;
-}
-
 
 h3 {
   margin: 9px auto;
