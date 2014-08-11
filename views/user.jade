@@ -30,7 +30,8 @@ block content
       if user.fc != me.fc
         .userInfo.othersInfo
           .topbar
-            .userIgn= user.ign
+            .userIgn
+              a(href='/user/#{user.fc}')= user.ign
             .userFc= user.fc
           .vivillonLists
             .userOffering

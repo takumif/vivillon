@@ -63,4 +63,22 @@ module.exports = function(app, passport) {
     }, 500);
   });
 
+  app.get('/user/:fc', function(req, res) {
+    console.log(req.params.fc);
+    User.findOne({ fc : req.params.fc }, function(err, user) {
+      if (user) {
+        console.log('user found');
+        res.render('userInfo', { user : user });
+      }
+      else {
+        console.log('not found');
+        req.next();
+      }
+    });
+  });
+
+  app.post('/sendMessage', function(req, res) {
+    console.log(req.body);
+  })
+
 };

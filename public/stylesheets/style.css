@@ -32,6 +32,11 @@ body {
   padding-left: 5px;
 }
 
+.titleBar a {
+  color: white;
+  text-decoration: none;
+}
+
 a {
   color: #00B7FF;
 }
@@ -96,4 +101,80 @@ label span {
 
 .right {
   width: 300px;
+}
+
+.userInfo {
+  margin: 30px 20px;
+  border: 1px solid #CCC;
+  overflow: hidden;
+}
+
+.othersInfo img {
+  height: 60px;
+}
+
+.topbar {
+  padding-top: 3px;
+  overflow: hidden;
+  width: 100%;
+  background-color: #ddd;
+  font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+  .selfIgn, .selfFc {
+    float: left;
+    height: 23px;
+    margin: auto 20px;
+    line-height: 25px;
+  }
+
+  .selfFc {
+    font-size: 15px;
+    margin-top: 1px;
+  }
+
+  #update, #logout {
+    float: right;
+    margin: auto 20px;
+  }
+
+  .topbar a {
+    color: #555;
+    text-decoration: underline;
+    font-size: 13px;
+    line-height: 25px;
+    cursor: pointer;
+  }
+
+  .userIgn, .userFc {
+    float: left;
+    height: 23px;
+    margin: auto 20px;
+    line-height: 25px;
+  }
+
+  .userFc {
+    font-size: 15px;
+    margin-top: 1px;
+  }
+
+.selfOffering {
+  padding-top: 5px;
+}
+
+.userOffering {
+  padding-top: 5px;
+}
+
+
+.vivillonLists {
+  padding: 0 20px;
+  font-size: 13px;
+}
+
+.vivillonLists p{
+  margin: 4px auto;
+}
+
+.bigHr {
+  margin: 40px;
 }

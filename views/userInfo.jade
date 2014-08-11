@@ -1,0 +1,25 @@
+extends layout
+
+block head
+  link(rel='stylesheet' href='/stylesheets/user.css')
+
+block content
+  .userInfo
+    .topbar
+      .selfIgn= user.ign
+      .selfFc= user.fc
+    .vivillonLists
+      .userOffering.selfOffering
+        p Offering
+        each offering in user.offering
+          img(src='/images/#{offering}.png' title='#{offering}')
+      hr
+      .userLookingFor.selfLookingFor
+        p Looking for
+        each lookingFor in user.lookingFor
+          img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+  p Send #{user.ign} a message
+  form(action='/sendMessage' method='post')
+    input(type='hidden' name='recipient' value='#{user.fc}')
+    textarea(name='content' placeholder='Add me!')
+    button#sendButton(type='submit') Send

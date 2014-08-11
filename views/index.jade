@@ -44,16 +44,21 @@ block content
         input.form-control#loginPasswordInput(type='password' name='password' placeholder='Password' required)
       button#loginButton(type='submit') Log in
 
+  hr.bigHr
+
   .content
     each user in users
-      .userli
-        .userFc= user.fc
-        .userIgn= user.ign
-        .userOffering
-          p Offering
-          each offering in user.offering
-            img(src='/images/#{offering}.png' title='#{offering}')
-        .userLookingFor
-          p Looking for
-          each lookingFor in user.lookingFor
-            img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+      .userInfo.othersInfo
+        .topbar
+          .userFc= user.fc
+          .userIgn= user.ign
+        .vivillonLists
+          .userOffering
+            p Offering
+            each offering in user.offering
+              img(src='/images/#{offering}.png' title='#{offering}')
+          hr
+          .userLookingFor
+            p Looking for
+            each lookingFor in user.lookingFor
+              img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
