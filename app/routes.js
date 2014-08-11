@@ -95,7 +95,11 @@ module.exports = function(app, passport) {
         message.save();
       }
     });
-    res.redirect('/')
+    if (req.body.content == 'addme') {
+      res.redirect('/user/' + req.body.recipient);
+    } else {
+      res.redirect('/');
+    }
   })
 
 };

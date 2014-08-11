@@ -18,8 +18,15 @@ block content
         p Looking for
         each lookingFor in user.lookingFor
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-  p Send #{user.ign} a message
-  form(action='/sendMessage' method='post')
-    input(type='hidden' name='recipient' value='#{user.fc}')
-    textarea(name='content' placeholder='Add me!')
-    button#sendButton(type='submit') Send
+  .left
+    p Ask #{user.ign} to add you
+    form(action='/sendMessage' method='post')
+      input(type='hidden' name='recipient' value='#{user.fc}')
+      input(type='hidden' name='content' value='addme')
+      button#sendButton(type='submit') Add me!
+  .right
+    p Send #{user.ign} a message
+    form(action='/sendMessage' method='post')
+      input(type='hidden' name='recipient' value='#{user.fc}')
+      textarea(name='content' placeholder='Add me!')
+      button#sendButton(type='submit') Send
