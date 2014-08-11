@@ -57,5 +57,10 @@ module.exports = function(app, passport) {
     });
   });
 
+  app.get('/redirect', function(req, res) {
+    setTimeout(function() {
+      res.redirect('/');
+    }, 500);
+  });
 
 };

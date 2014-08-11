@@ -2,10 +2,6 @@ body {
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
 img {
   height: 80px;
   margin-right: 3px;
@@ -23,31 +19,66 @@ img {
 }
 
 .userInfo {
-  width: 870px;
-  margin: 30px auto 30px auto;
+  margin: 30px 20px;
   border: 1px solid #CCC;
   overflow: hidden;
 }
 
+.othersInfo img {
+  height: 60px;
+}
+
 .topbar {
-  padding: 3px 0;
+  padding-top: 3px;
   overflow: hidden;
   width: 100%;
-  background-color: #ccc;
+  background-color: #ddd;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-weight: bold;
 }
   .selfIgn, .selfFc {
     float: left;
     height: 23px;
     margin: auto 20px;
+    line-height: 25px;
   }
 
-  #updateButton, #logoutButton {
+  .selfFc {
+    font-size: 15px;
+    margin-top: 1px;
+  }
+
+  #update, #logout {
     float: right;
     margin: auto 20px;
-    padding: 4px 8px;
   }
+
+  .topbar a {
+    color: #555;
+    text-decoration: underline;
+    font-size: 13px;
+    line-height: 25px;
+    cursor: pointer;
+  }
+
+  .userIgn, .userFc {
+    float: left;
+    height: 23px;
+    margin: auto 20px;
+    line-height: 25px;
+  }
+
+  .userFc {
+    font-size: 15px;
+    margin-top: 1px;
+  }
+
+.selfOffering {
+  padding-top: 5px;
+}
+
+.userOffering {
+  padding-top: 5px;
+}
 
 h3 {
   margin: 9px auto;
@@ -55,7 +86,7 @@ h3 {
 
 .vivillonLists {
   padding: 0 20px;
-  font-weight: bold;
+  font-size: 13px;
 }
 
 .vivillonLists p{
