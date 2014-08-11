@@ -75,16 +75,10 @@ function applySelection() {
     }
     else {
       $('.othersInfo').css('display', 'none');
-      var people = arrayIntersect(lookingForList[lookingFor], offeringList[offering]);
+      var people = $(lookingForList[lookingFor]).filter(offeringList[offering]);
       for (var i = 0; i < people.length; i++) {
         $('#' + people[i]).css('display', 'block');
       }
     }
   }
 }
-
-function arrayIntersect(a, b) {
-  return $.grep(a, function(i) {
-    return $.inArray(i, b) > -1;
-  });
-};
