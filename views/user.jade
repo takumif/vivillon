@@ -25,7 +25,7 @@ block content
     h2 Messages
       .messageBox
         each message in messages
-          .message 
+          .message
             .messageTime= message.date
             p <a href="/user/#{message.fromFc}">#{message.fromIgn}<a> sent you a message:
             .messageContent= message.content
