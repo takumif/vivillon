@@ -182,13 +182,12 @@ img.smallVivillon {
 }
 
 .right {
-  width: 300px;
-  height: 200px;
+  width: 310px;
   padding-left: 15px;
 }
 
 h2 {
-    padding: 10px 0;
+    padding: 5px 0 5px 15px;
     border-bottom: 2px solid #ccc;
     margin: 0;
   }
