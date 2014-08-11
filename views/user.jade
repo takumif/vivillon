@@ -21,14 +21,16 @@ block content
         each lookingFor in me.lookingFor
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
       
-  .right
+  .right.messageContainer
     h2 Messages
-      .messageBox
-        each message in messages
-          .message 
-            .messageTime= message.date
-            p <a href="/user/#{message.fromFc}">#{message.fromIgn}<a> sent you a message:
-            .messageContent= message.content
+    .messageBox
+      each message in messages
+        .message 
+          - var date = message.date.toString()
+          - date = date.slice(date.indexOf(" ", 3), date.lastIndexOf(":")).replace(" 2014", ",  ").replace(" 2015", ",  ")
+          .messageTime= date
+          p <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+          .messageContent= message.content
 
       
   .left
