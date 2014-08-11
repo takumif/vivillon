@@ -96,18 +96,22 @@ label span {
 }
 
 .left {
-  width: 650px;
+  float: left;
+  width: 630px;
 }
-
-.right {
-  width: 300px;
-}
+  .left p {
+    margin: 5px auto;
+  }
 
 .userInfo {
   margin: 30px 20px;
   border: 1px solid #CCC;
   overflow: hidden;
 }
+  .othersInfo {
+    margin-top: 20px;
+    width: 600px;
+  }
 
 .othersInfo img {
   height: 60px;
@@ -129,26 +133,38 @@ label span {
 
   .selfFc {
     font-size: 15px;
-    margin-top: 1px;
+    }
+
+  .selfOffering {
+    padding-top: 5px;
   }
+
+  .userOffering {
+    padding-top: 5px;
+  }
+
+.vivillonLists {
+  padding: 0 20px;
+  font-size: 13px;
+}
 
   #update, #logout {
     float: right;
     margin: auto 20px;
+    font-size: 13px;
   }
 
   .topbar a {
     color: #555;
     text-decoration: underline;
-    font-size: 13px;
     line-height: 25px;
     cursor: pointer;
   }
 
-  .userIgn, .userFc {
+.userIgn, .userFc {
     float: left;
     height: 23px;
-    margin: auto 20px;
+    margin: 0 20px 2px 20px;
     line-height: 25px;
   }
 
@@ -157,20 +173,6 @@ label span {
     margin-top: 1px;
   }
 
-.selfOffering {
-  padding-top: 5px;
-}
-
-.userOffering {
-  padding-top: 5px;
-}
-
-
-.vivillonLists {
-  padding: 0 20px;
-  font-size: 13px;
-}
-
 .vivillonLists p{
   margin: 4px auto;
 }
@@ -178,3 +180,13 @@ label span {
 .bigHr {
   margin: 40px;
 }
+
+.right {
+  width: 300px;
+  height: 200px;
+  padding-left: 15px;
+  border-left: 1px solid #ccc;
+}
+  h2 {
+    margin: 8px 0;
+  }

@@ -1,4 +1,5 @@
 var User = require('./models/user'),
+    Message = require('./models/message'),
     names = require('./vivillons');
 
 module.exports = function(app, passport) {
@@ -6,10 +7,13 @@ module.exports = function(app, passport) {
   app.get('/', function(req, res) {
     if (req.isAuthenticated()) {
       User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
-        res.render('user', {
-          users : users,
-          me : req.user
-        });
+        Message.find( { to : req.user.fc }, function(err, messages) {
+          res.render('user', {
+            users : users,
+            me : req.user,
+            messages : messages
+          });
+        })
       });
     } else {
       console.log('not authenticated');
@@ -79,6 +83,19 @@ module.exports = function(app, passport) {
 
   app.post('/sendMessage', function(req, res) {
     console.log(req.body);
+    User.findOne( {fc : req.body.recipient }, function(err, user) {
+      if (user) {
+        var message = new Message();
+        message.fromFc = req.user.fc;
+        message.fromIgn = req.user.ign;
+        message.toFc = user.fc;
+        message.toIgn = user.ign;
+        message.date = new Date();
+        message.content = req.body.content;
+        message.save();
+      }
+    });
+    res.redirect('/')
   })
 
 };

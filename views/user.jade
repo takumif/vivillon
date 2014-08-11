@@ -22,7 +22,14 @@ block content
           img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
       
   .right
-      h2 Messages
+    h2 Messages
+      .messageBox
+        each message in messages
+          .message 
+            .messageTime= message.date
+            p #{message.to} sent you a message:
+            .messageContent= message.content
+
       
   .left
     p People with Vivillons you want
