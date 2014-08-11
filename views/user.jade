@@ -27,7 +27,7 @@ block content
         each message in messages
           .message 
             .messageTime= message.date
-            p #{message.to} sent you a message:
+            p <a href="/user/#{message.fromFc}">#{message.fromIgn}<a> sent you a message:
             .messageContent= message.content
 
       
