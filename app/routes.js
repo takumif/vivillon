@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
     } else {
       console.log('not authenticated');
       
-      User.find(function(err, users) {
+      User.find().limit(5).find(function(err, users) {
         res.render('index', {
           users : users,
           names : names
@@ -71,8 +71,17 @@ module.exports = function(app, passport) {
     console.log(req.params.fc);
     User.findOne({ fc : req.params.fc }, function(err, user) {
       if (user) {
-        console.log('user found');
-        res.render('userInfo', { user : user });
+        if (req.isAuthenticated()) {
+          Message.findOne({ toFc : user.fc, fromFc : req.user.fc, content : 'addme' }, function(err, addme) {
+            res.render('userInfo', {
+              user : user,
+              asked : Boolean(addme),
+              logged_in : true
+            });
+          });
+        } else {
+          res.render('userInfo', { user : user, logged_in : false });
+        }
       }
       else {
         console.log('not found');

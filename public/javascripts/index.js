@@ -20,6 +20,12 @@ $(function() {
       event.preventDefault();
     }
   });
+
+  $('#sendButton').click(function(event) {
+    if ($('#messageTextarea').val() == '') {
+      event.preventDefault();
+    }
+  });
 });
 
 function validFC(fc) {
