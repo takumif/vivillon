@@ -11,7 +11,9 @@ module.exports = function(app, passport) {
           res.render('user', {
             users : users,
             me : req.user,
-            messages : messages
+            messages : messages,
+            offeringList : peopleLookup(users, true),
+            lookingForList : peopleLookup(users, false)
           });
         })
       });
@@ -76,7 +78,7 @@ module.exports = function(app, passport) {
             res.render('userInfo', {
               user : user,
               asked : Boolean(addme),
-              logged_in : true
+              logged_in : true,
             });
           });
         } else {
@@ -112,3 +114,24 @@ module.exports = function(app, passport) {
   })
 
 };
+
+function peopleLookup(users, offering) {
+  var map = {};
+  for (var v = 0; v < names.length; v++) {
+    map[names[v]] = [];
+  }
+  if (offering) {
+    for (var i = 0; i < users.length; i++) {
+      for (var j = 0; j < users[i].offering.length; j++) {
+        map[users[i].offering[j]].push(users[i].fc);
+      }
+    }
+  } else {
+    for (var i = 0; i < users.length; i++) {
+      for (var j = 0; j < users[i].lookingFor.length; j++) {
+        map[users[i].lookingFor[j]].push(users[i].fc);
+      }
+    }
+  }
+  return map;
+}

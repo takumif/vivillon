@@ -2,6 +2,9 @@ extends layout
 
 block head
   link(rel='stylesheet' href='/stylesheets/user.css')
+  script.
+    var offeringList = !{JSON.stringify(offeringList)};
+    var lookingForList = !{JSON.stringify(lookingForList)};
 
 block content
   .userInfo
@@ -39,9 +42,18 @@ block content
   .left
     p People with Vivillons you want
     .toggleVivillons Show irrelevant patterns
+    .fliterSelection Offering Looking For
+      select.offeringSelection
+        option All
+        each offer in me.lookingFor
+          option= offer
+      select.LookingForSelection
+        option All
+        each offer in me.offering
+          option= offer
     each user in users
       if (user.fc != me.fc)
-        .userInfo.othersInfo
+        .userInfo.othersInfo(id='#{user.fc}')
           .topbar
             .userIgn
               a(href='/user/#{user.fc}')= user.ign
