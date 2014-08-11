@@ -53,13 +53,14 @@ function validFC(fc) {
 function applySelection() {
   var offering = $('.offeringSelection').val();
   var lookingFor = $('.lookingForSelection').val();
+  var people = [];
   if (offering == 'All') {
     if (lookingFor == 'All') {
       $('.othersInfo').css('display', 'block');
     }
     else {
       $('.othersInfo').css('display', 'none');
-      var people = lookingForList[lookingFor];
+      people = lookingForList[lookingFor];
       for (var i = 0; i < people.length; i++) {
         $('#' + people[i]).css('display', 'block');
       }
@@ -68,14 +69,14 @@ function applySelection() {
   else {
     if (lookingFor == 'All') {
       $('.othersInfo').css('display', 'none');
-      var people = offeringList[offering];
+      people = offeringList[offering];
       for (var i = 0; i < people.length; i++) {
         $('#' + people[i]).css('display', 'block');
       }
     }
     else {
       $('.othersInfo').css('display', 'none');
-      var people = $(lookingForList[lookingFor]).filter(offeringList[offering]);
+      people = $(lookingForList[lookingFor]).filter(offeringList[offering]);
       for (var i = 0; i < people.length; i++) {
         $('#' + people[i]).css('display', 'block');
       }
