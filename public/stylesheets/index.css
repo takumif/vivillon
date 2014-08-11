@@ -1,3 +1,9 @@
+.main {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 950px;
+}
+
 
 .registration, .login {
   border: 1px solid #ccc;
