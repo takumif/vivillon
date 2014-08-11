@@ -24,35 +24,40 @@ img {
 
 .userInfo {
   width: 870px;
-  margin: 50px auto 30px auto;
+  margin: 30px auto 30px auto;
   border: 1px solid #CCC;
   overflow: hidden;
 }
 
-.written {
-  width: 190px;
-  float: left;
-  padding: 60px 30px 0 20px;
+.topbar {
+  padding: 3px 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #ccc;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
+  .selfIgn, .selfFc {
+    float: left;
+    height: 23px;
+    margin: auto 20px;
+  }
+
+  #updateButton, #logoutButton {
+    float: right;
+    margin: auto 20px;
+    padding: 4px 8px;
+  }
 
 h3 {
-  margin-bottom: 9px;
+  margin: 9px auto;
 }
 
 .vivillonLists {
-  float: right;
-  width: 583px;
-  padding-right: 20px;
+  padding: 0 20px;
+  font-weight: bold;
 }
 
 .vivillonLists p{
   margin: 4px auto;
-}
-
-button {
-  margin-top: 30px;
-  vertical-align: middle;
-  margin-left: 40px;
 }
