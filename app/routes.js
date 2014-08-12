@@ -37,10 +37,12 @@ module.exports = function(app, passport) {
   })
 
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
-  }));
+  }), function(req, res) {
+    console.log(req.isAuthenticated());
+    res.redirect('/user/' + req.user.fc);
+  });
 
   app.post('/register', passport.authenticate('local-signup', {
     successRedirect : '/', // redirect to the secure profile section
@@ -60,16 +62,17 @@ module.exports = function(app, passport) {
     }, 100);
   });
 
+/*
   app.get('/login', function(req, res) {
     setTimeout(function() {
       if (req.isAuthenticated()) {
         res.redirect('/');
       } else {
-        return fn(null, false, {flash: 'Sorry, something is wrong with your FC or password!'})
         res.redirect('/login');
       }
     }, 100);
   });
+*/
 
   app.get('/user/:fc', function(req, res) {
     User.findOne({ fc : req.params.fc }, function(err, user) {
