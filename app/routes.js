@@ -13,7 +13,8 @@ module.exports = function(app, passport) {
       User.find().sort('-_id').limit(5).exec(function(err, users) {
         res.render('index', {
           users : users,
-          names : names
+          names : names,
+          flash : req.flash('loginMessage')
         });
       });
     }
@@ -64,6 +65,7 @@ module.exports = function(app, passport) {
       if (req.isAuthenticated()) {
         res.redirect('/');
       } else {
+        return fn(null, false, {flash: 'Sorry, something is wrong with your FC or password!'})
         res.redirect('/login');
       }
     }, 100);

@@ -93,6 +93,10 @@ img {
   display: none;
 }
 
+.addme {
+  background: white;
+}
+
 h3 {
   margin: 9px auto;
 }
