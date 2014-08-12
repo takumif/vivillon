@@ -40,15 +40,27 @@ module.exports = function(app, passport) {
     failureRedirect : '/', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }), function(req, res) {
-    console.log(req.isAuthenticated());
-    res.redirect('/user/' + req.user.fc);
+    res.redirect('/success/' + req.body.fc + '/' + req.body.password);
   });
 
   app.post('/register', passport.authenticate('local-signup', {
-    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
-  }));
+  }), function(req, res) {
+    res.redirect('/success/' + req.body.fc + '/' + req.body.password);
+  });
+
+  app.get('/success/:fc/:password', function(req, res) {
+    if (req.isAuthenticated()) {
+      res.redirect('/user/' + req.user.fc);
+    } else {
+      console.log('REDIRECT LOOPING');
+      passport.authenticate('local-login', {
+        successRedirect : '/user/' + req.params.fc,
+        failureRedirect : '/success/' + req.params.fc + '/' + req.params.password
+      })
+    }
+  });
 
   app.get('/logout', function(req, res) {
     req.session.destroy(function (err) {
