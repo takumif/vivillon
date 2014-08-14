@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
   offering       : [String],
   lookingFor     : [String],
   nativePattern  : String,
-  status         : String
+  status         : String,
+  somethingElse  : Boolean
 });
 
 // methods ======================

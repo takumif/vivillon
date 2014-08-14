@@ -21,7 +21,7 @@ block content
 
     .status
       p Status:
-      textarea#statusTextarea(name="status" placeholder="When will you be online? Are you looking for particular stats/moves/balls?")= user.status
+      textarea#statusTextarea(name="status" placeholder="When will you be online? Are you looking for particular stats/moves/balls, or something other than Vivillons?")= user.status
 
     .offering
       p Currently offering:
@@ -34,12 +34,18 @@ block content
 
     .want
       p Currently looking for:
-      select.image-picker#lookingForList(multiple="multiple" name="lookingFor" required)
+      select.image-picker#lookingForList(multiple="multiple" name="lookingFor")
          each name in names
           if (user.lookingFor.indexOf(name) != -1)
             option(data-img-src="/images/"+name+".png" selected="selected")=name
           else
             option(data-img-src="/images/"+name+".png")=name
+      div
+        if (user.somethingElse)
+          input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse' checked='checked')
+        else
+          input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse')
+        label#somethingElseText(for='somethingElseCheckbox') I (also) want Pokémon or items other than Vivillons specified in my status
 
     .centered.buttons
       button#updateButton(type='submit') Update

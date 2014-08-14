@@ -12,9 +12,11 @@ block content
     hr
 
     if (logged_in)
-    h3 Send feedback
-    form(action='/about' method='post')
-      p
-        textarea#feedbackTextarea(name='feedback')
-      p
-        button#feedbackButton(type='submit') Send
+      h3 Send feedback
+      form(action='/about' method='post')
+        p
+          textarea#feedbackTextarea(name='feedback')
+        p
+          button#feedbackButton(type='submit') Send
+    else
+      p Please <a href='/#login'>log in</a> to send feedback.

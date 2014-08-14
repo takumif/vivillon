@@ -26,8 +26,13 @@ block content
       hr
       .userLookingFor.selfLookingFor
         p Looking for
-        each lookingFor in me.lookingFor
-          img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+        if (me.lookingFor && me.lookingFor.length)
+          script console.log('#{me.lookingFor}')
+          each lookingFor in me.lookingFor
+            img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+        if (me.somethingElse)
+          ul
+            li Pokémon or items other than Vivillons
       
   .right.messageContainer
     h2.messagesTitle Messages
@@ -95,9 +100,13 @@ block content
             hr
             .userLookingFor
               p Looking for
-              each lookingFor in user.lookingFor
-                if (me.offering.indexOf(lookingFor) != -1)
-                  img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
-                else
-                  img.smallVivillon.irrelevant(src='/images/#{lookingFor}.png' style='display: none;' title='#{lookingFor}')
+              if (user.lookingFor && user.lookingFor.length)
+                each lookingFor in user.lookingFor
+                  if (me.offering.indexOf(lookingFor) != -1)
+                    img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+                  else
+                    img.smallVivillon.irrelevant(src='/images/#{lookingFor}.png' style='display: none;' title='#{lookingFor}')
+              if (user.somethingElse)
+                ul
+                  li Pokémon or items other than Vivillons
 

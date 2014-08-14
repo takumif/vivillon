@@ -60,6 +60,10 @@ button:focus {
   outline: 0;
 }
 
+ul {
+  padding-left: 20px;
+}
+
 .centered {
   text-align: center;
 }

@@ -63,6 +63,17 @@
     width: 108px;
   }
 
+  #somethingElseCheckbox {
+    width: 20px;
+    margin: 10px 3px 0 3px;
+    vertical-align: bottom;
+  }
+
+  #somethingElseText {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
   #registerFcInput{
     float: left;
     margin-left: 9px;

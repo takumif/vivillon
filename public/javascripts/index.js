@@ -12,7 +12,7 @@ $(function() {
       alert('Passwords don\'t match!');
       event.preventDefault();
     } else if ($('#registerOfferingInput').val() == null ||
-               $('#registerLookingForInput').val() == null) {
+               ($('#registerLookingForInput').val() == null && !$('#somethingElseCheckbox').is(':checked'))) {
       alert('Choose the Vivillons you have/want!');
       event.preventDefault();
     } else if (!validFC($('#registerFcInput').val())) {
@@ -52,7 +52,7 @@ $(function() {
       alert('Choose your native pattern!');
       event.preventDefault();
     } else if ($('#offeringList').val() == null ||
-               $('#lookingForList').val() == null) {
+               ($('#lookingForList').val() == null && !$('#somethingElseCheckbox').is(':checked'))) {
       alert('Choose the Vivillons you have/want!');
       event.preventDefault();
     }

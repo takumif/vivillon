@@ -22,8 +22,12 @@ block content
       hr
       .userLookingFor.selfLookingFor
         p Looking for
-        each lookingFor in user.lookingFor
-          img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+        if (user.lookingFor && user.lookingFor.length)
+          each lookingFor in user.lookingFor
+            img(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+        if (user.somethingElse)
+          ul
+            li Pokémon or items other than Vivillons
 
   if (logged_in)
     .left.ask

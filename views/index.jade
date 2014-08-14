@@ -27,21 +27,24 @@ block content
         .form-group#passConfirm
           input.form-control#registerPasswordConfirmInput(type='password' name='passwordConfirm' placeholder="Confirm Password" required)
       .form-group#offering
-            label I'm offering <span>(At least One)</span>
+            label I'm offering <span>(At least one)</span>
             .form-vivillon-list#offering-list
               select.image-picker#registerOfferingInput(multiple="multiple" name="offering" required)
                 each name in names
                   option(data-img-src="/images/"+name+".png")=name
       .form-group#want
-        label I'm looking for <span>(At least One)</span>
+        label I'm looking for <span>(At least one, or check off the box)</span>
+        div
+          input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse')
+          label#somethingElseText(for='somethingElseCheckbox') I (also) want Pokémon or items other than Vivillons that I'll specify later in my status
         .form-vivillon-list#want-list
-          select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor" required)
+          select.image-picker#registerLookingForInput(multiple="multiple" name="lookingFor")
             each name in names
               option(value=name data-img-src="/images/"+name+".png")=name
       button#registerButton(type='submit') Register
 
 
-  .login
+  .login#login
     .flashMessage= flash
     h3 Log In
     form(action='/login' method='post')
@@ -68,5 +71,9 @@ block content
           hr
           .userLookingFor
             p Looking for
-            each lookingFor in user.lookingFor
-              img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+            if (user.lookingFor && user.lookingFor.length)
+              each lookingFor in user.lookingFor
+                img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+            if (user.somethingElse)
+              ul
+                li Pokémon or items other than Vivillons

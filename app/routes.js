@@ -32,13 +32,16 @@ module.exports = function(app, passport) {
   app.post('/update', function(req, res) {
     console.log(req.body.offering)
     if (validVivillonList(req.body.offering) &&
-        validVivillonList(req.body.lookingFor) &&
+        (req.body.somethingElse == 'somethingElse' || (req.body.lookingFor && validVivillonList(req.body.lookingFor))) &&
         validVivillon(req.body.nativePattern)) {
       req.user.offering = req.body.offering;
       req.user.lookingFor = req.body.lookingFor;
       req.user.nativePattern = req.body.nativePattern;
       req.user.status = req.body.status;
+      req.user.somethingElse = (req.body.somethingElse == 'somethingElse');
       req.user.save();
+    } else {
+      console.log('invalid update');
     }
     res.redirect('/');
   })
@@ -99,8 +102,15 @@ module.exports = function(app, passport) {
         if (req.isAuthenticated()) {
           if (user.fc == req.user.fc) {
             // the user is on their own page
-            User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
-              Message.find().or([ { toFc : req.user.fc }, { fromFc : req.user.fc } ]).sort('-date').exec(function(err, messages) {
+            User.find({ offering : { $in : req.user.lookingFor } })
+              .or([{ lookingFor : { $in : req.user.offering } }, { somethingElse : true }])
+              .sort('-_id')
+              .exec(function(err, users) {
+
+              Message.find().or([ { toFc : req.user.fc }, { fromFc : req.user.fc } ])
+                .sort('-date')
+                .exec(function(err, messages) {
+
                 res.render('user', {
                   users : users,
                   me : req.user,
@@ -157,7 +167,7 @@ module.exports = function(app, passport) {
         res.render('about', {
           userCount : userCount,
           messageCount : messageCount,
-          logged_in : req.isAuthenticated
+          logged_in : req.isAuthenticated()
         });
       });
     });
@@ -198,6 +208,7 @@ function peopleLookup(users, offering) {
 }
 
 function validVivillonList(list) {
+  if (validVivillon(list)) return true;
   for (var i = 0; i < list.length; i++) {
     if (!validVivillon(list[i])) return false;
   }

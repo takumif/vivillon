@@ -47,10 +47,9 @@ module.exports = function(passport) {
             password == '' ||
             req.body.nativePattern == 'Native pattern' ||
             req.body.offering == null ||
-            req.body.lookingFor == null ||
             !validVivillon(req.body.nativePattern) ||
             !(validVivillonList(req.body.offering) || validVivillon(req.body.offering)) ||
-            !(validVivillonList(req.body.lookingFor) || validVivillon(req.body.lookingFor))) {
+            (req.body.somethingElse != 'somethingElse' && !(validVivillonList(req.body.lookingFor) || validVivillon(req.body.lookingFor)))) {
             return done(null, false, req.flash('signupMessage', 'Fields cannot be empty.'));
         }
 
@@ -77,6 +76,7 @@ module.exports = function(passport) {
                 newUser.offering = req.body.offering;
                 newUser.lookingFor = req.body.lookingFor;
                 newUser.nativePattern = req.body.nativePattern;
+                newUser.somethingElse = (req.body.somethingElse == 'somethingElse');
         // save the user
                 newUser.save(function(err) {
                     if (err)
@@ -129,6 +129,7 @@ function validFC(fc) {
 }
 
 function validVivillonList(list) {
+  if (list == null) return false;
   for (var i = 0; i < list.length; i++) {
     if (!validVivillon(list[i])) return false;
   }
