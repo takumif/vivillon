@@ -11,9 +11,14 @@ block content
     .topbar
       .selfIgn= me.ign
       .selfFc= me.fc
+      .selfNativePattern Native: #{me.nativePattern}
       a#logout(onclick="location.href ='/logout';") Logout
       a#update(onclick="location.href ='/update';") Update info
     .vivillonLists
+      .userStatus.selfStatus
+        p Status
+        p= me.status
+      hr
       .userOffering.selfOffering
         p Offering
         each offering in me.offering
@@ -28,15 +33,26 @@ block content
     h2.messagesTitle Messages
     .messageBox
       each message in messages
-        .message 
-          - var date = message.date.toString()
-          - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-          .messageTime= date
-          if (message.content == 'addme')
-            .addme.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
-          else
-            .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-            .messageContent= message.content
+        if (message.toFc == me.fc)
+          .message 
+            - var date = message.date.toString()
+            - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+            .messageTime= date
+            if (message.content == 'addme')
+              .addme.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
+            else
+              .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+              .messageContent= message.content
+        else
+          .message.messageFromMe
+            - var date = message.date.toString()
+            - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+            .messageTime= date
+            if (message.content == 'addme')
+              .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
+            else
+              .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
+              .messageContent= message.content
 
       
   .left
@@ -61,7 +77,14 @@ block content
             .userIgn
               a(href='/user/#{user.fc}')= user.ign
             .userFc= user.fc
+            if (user.nativePattern)
+              .userNativePattern Native: #{user.nativePattern}
           .vivillonLists
+            if (user.status)
+              .userStatus
+                p Status
+                p= user.status
+              hr
             .userOffering
               p Offering
               each offering in user.offering

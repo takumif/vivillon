@@ -18,6 +18,9 @@ $(function() {
     } else if (!validFC($('#registerFcInput').val())) {
       alert('Invalid Friend Code!');
       event.preventDefault();
+    } else if ($('#selectNativePattern').val() == 'Native pattern') {
+      alert('Choose your native pattern!');
+      event.preventDefault();
     }
   });
 
@@ -43,6 +46,25 @@ $(function() {
   $(".lookingForSelection").change(function() {
     applySelection();
   });
+
+  $('#updateButton').click(function(event) {
+    if ($('#selectNativePattern').val() == 'Native pattern') {
+      alert('Choose your native pattern!');
+      event.preventDefault();
+    } else if ($('#offeringList').val() == null ||
+               $('#lookingForList').val() == null) {
+      alert('Choose the Vivillons you have/want!');
+      event.preventDefault();
+    }
+  });
+
+  $('#feedbackButton').click(function(event) {
+    if ($('#feedbackTextarea').val() == '') {
+      event.preventDefault();
+    } else {
+      alert('Thanks for the feedback!');
+    }
+  })
 
 });
 

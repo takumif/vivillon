@@ -48,11 +48,19 @@
     margin-left: 9px;
   } 
   #password{
-    margin-left: 130px;
+    margin-left: 9px;
     float: left;
+  }
+  #nativePattern {
+    float: left;
+    margin: 5px 0 0 10px;
   }
   #ign {
     float: left;
+  }
+
+  #selectNativePattern {
+    width: 108px;
   }
 
   #registerFcInput{

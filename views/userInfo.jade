@@ -8,7 +8,13 @@ block content
     .topbar
       .selfIgn= user.ign
       .selfFc= user.fc
+      .selfNativePattern Native: #{user.nativePattern}
     .vivillonLists
+      if (user.status)
+        .userStatus
+          p Status
+          p= user.status
+        hr
       .userOffering.selfOffering
         p Offering
         each offering in user.offering

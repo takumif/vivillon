@@ -1,5 +1,4 @@
-// config/passport.js
-
+var names = require('./vivillons');
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
 
@@ -46,8 +45,12 @@ module.exports = function(passport) {
         
         if (req.body.ign == '' ||
             password == '' ||
+            req.body.nativePattern == 'Native pattern' ||
             req.body.offering == null ||
-            req.body.lookingFor == null) {
+            req.body.lookingFor == null ||
+            !validVivillon(req.body.nativePattern) ||
+            !(validVivillonList(req.body.offering) || validVivillon(req.body.offering)) ||
+            !(validVivillonList(req.body.lookingFor) || validVivillon(req.body.lookingFor))) {
             return done(null, false, req.flash('signupMessage', 'Fields cannot be empty.'));
         }
 
@@ -73,6 +76,7 @@ module.exports = function(passport) {
                 newUser.password = newUser.generateHash(password); // use the generateHash function in our user model
                 newUser.offering = req.body.offering;
                 newUser.lookingFor = req.body.lookingFor;
+                newUser.nativePattern = req.body.nativePattern;
         // save the user
                 newUser.save(function(err) {
                     if (err)
@@ -122,4 +126,15 @@ module.exports = function(passport) {
 
 function validFC(fc) {
     return /^([0-9]{12})$/.test(fc.replace(/-/g, ''));
+}
+
+function validVivillonList(list) {
+  for (var i = 0; i < list.length; i++) {
+    if (!validVivillon(list[i])) return false;
+  }
+  return true;
+}
+
+function validVivillon(name) {
+  return (names.indexOf(name) != -1);
 }

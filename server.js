@@ -32,7 +32,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade'); // set up ejs for templating
 
 // required for passport
-app.use(session({ store: mongoStore, secret: sessionSecret, resave: true, saveUninitialized: true })); // session secret
+app.use(session({ store: mongoStore, secret: sessionSecret })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

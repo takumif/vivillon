@@ -1,5 +1,6 @@
 var User = require('./models/user'),
     Message = require('./models/message'),
+    Feedback = require('./models/feedback'),
     names = require('./vivillons');
 
 module.exports = function(app, passport) {
@@ -30,9 +31,15 @@ module.exports = function(app, passport) {
 
   app.post('/update', function(req, res) {
     console.log(req.body.offering)
-    req.user.offering = req.body.offering;
-    req.user.lookingFor = req.body.lookingFor;
-    req.user.save();
+    if (validVivillonList(req.body.offering) &&
+        validVivillonList(req.body.lookingFor) &&
+        validVivillon(req.body.nativePattern)) {
+      req.user.offering = req.body.offering;
+      req.user.lookingFor = req.body.lookingFor;
+      req.user.nativePattern = req.body.nativePattern;
+      req.user.status = req.body.status;
+      req.user.save();
+    }
     res.redirect('/');
   })
 
@@ -91,8 +98,9 @@ module.exports = function(app, passport) {
       if (user) {
         if (req.isAuthenticated()) {
           if (user.fc == req.user.fc) {
+            // the user is on their own page
             User.find({ offering : { $in : req.user.lookingFor } }).find({ lookingFor : { $in : req.user.offering } }, function(err, users) {
-              Message.find( { toFc : req.user.fc }).sort('-date').exec(function(err, messages) {
+              Message.find().or([ { toFc : req.user.fc }, { fromFc : req.user.fc } ]).sort('-date').exec(function(err, messages) {
                 res.render('user', {
                   users : users,
                   me : req.user,
@@ -141,6 +149,29 @@ module.exports = function(app, passport) {
     } else {
       res.redirect('/');
     }
+  });
+
+  app.get('/about', function(req, res) {
+    User.count(function(err, userCount) {
+      Message.count(function(err, messageCount) {
+        res.render('about', {
+          userCount : userCount,
+          messageCount : messageCount,
+          logged_in : req.isAuthenticated
+        });
+      });
+    });
+  });
+
+  app.post('/about', function(req, res) {
+    if (req.body.feedback != '' && req.isAuthenticated()) {
+      var fb = new Feedback();
+      fb.fromFc = req.user.fc;
+      fb.fromIgn = req.user.ign;
+      fb.content = req.body.feedback;
+      fb.save();
+    }
+    res.redirect('/');
   })
 
 };
@@ -164,4 +195,15 @@ function peopleLookup(users, offering) {
     }
   }
   return map;
+}
+
+function validVivillonList(list) {
+  for (var i = 0; i < list.length; i++) {
+    if (!validVivillon(list[i])) return false;
+  }
+  return true;
+}
+
+function validVivillon(name) {
+  return (names.indexOf(name) != -1);
 }

@@ -10,7 +10,9 @@ var userSchema = mongoose.Schema({
   password       : String,
   requests       : [Number],
   offering       : [String],
-  lookingFor     : [String]
+  lookingFor     : [String],
+  nativePattern  : String,
+  status         : String
 });
 
 // methods ======================

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .centered
+    h2 Global Vivillon Trade Station
+    p Supporting Vivillon collectors worldwide since August 12, 2014
+    p #{userCount} users registered
+    p #{messageCount} messages sent
+    p Developed by <a target="blank" href="http://www.lisaxie.net">Lisa Xie</a> and <a target="blank" href="http://www.takumifujimoto.com">Takumi Fujimoto</a>
+
+    br
+    hr
+
+    if (logged_in)
+    h3 Send feedback
+    form(action='/about' method='post')
+      p
+        textarea#feedbackTextarea(name='feedback')
+      p
+        button#feedbackButton(type='submit') Send

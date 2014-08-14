@@ -16,6 +16,12 @@ block content
           input.form-control#registerIgnInput(type='text' name='ign' placeholder="In-Game Name" required)
         .form-group#fc
           input.form-control#registerFcInput(name='fc' placeholder="Friend Code" required)
+        .form-group#nativePattern
+          select#selectNativePattern(name='nativePattern' required)
+            option Native pattern
+            option(disabled='disabled') ------------
+            each name in names
+              option= name
         .form-group#password
           input.form-control#registerPasswordInput(type='password' name='password' placeholder="Password" required)
         .form-group#passConfirm

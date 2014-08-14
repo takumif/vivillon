@@ -85,6 +85,14 @@ img {
     margin: 7px 10px 8px 0;
   }
 
+  .messageFromMe {
+    color: #aaa;
+  }
+
+  .messageFromMe a {
+    color: #aaa;
+  }
+
 .offeringSelection, .lookingForSelection {
   .float: left;
 }

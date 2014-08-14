@@ -1,9 +1,28 @@
 extend layout
 
+block head
+  link(rel='stylesheet', href='/stylesheets/update.css')
+
 block content
-  h1 Update your Vivillon selection!
+  h2 Update your info!
 
   form(action='/update' method='post')
+
+    .nativePattern
+      p Native pattern:
+      select#selectNativePattern(name='nativePattern' required)
+        option Native pattern
+        option(disabled='disabled') ------------
+        each name in names
+          if (name == user.nativePattern)
+            option(selected='selected')= name
+          else
+            option= name
+
+    .status
+      p Status:
+      textarea#statusTextarea(name="status" placeholder="When will you be online? Are you looking for particular stats/moves/balls?")= user.status
+
     .offering
       p Currently offering:
       select.image-picker#offeringList(multiple="multiple" name="offering" required)
@@ -12,6 +31,7 @@ block content
             option(data-img-src="/images/"+name+".png" selected="selected")=name
           else
             option(data-img-src="/images/"+name+".png")=name
+
     .want
       p Currently looking for:
       select.image-picker#lookingForList(multiple="multiple" name="lookingFor" required)
@@ -20,6 +40,7 @@ block content
             option(data-img-src="/images/"+name+".png" selected="selected")=name
           else
             option(data-img-src="/images/"+name+".png")=name
+
     .centered.buttons
-      button(type='submit') Update
+      button#updateButton(type='submit') Update
       button(type='button' onclick="location.href ='/'") Cancel

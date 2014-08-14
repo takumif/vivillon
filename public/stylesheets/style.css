@@ -38,7 +38,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #555;
 }
 
 button {
@@ -124,22 +124,18 @@ img.smallVivillon {
   background-color: #ddd;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-  .selfIgn, .selfFc {
+  .selfIgn, .selfFc, .selfNativePattern {
     float: left;
     height: 23px;
     margin: auto 20px;
     line-height: 25px;
   }
 
-  .selfFc {
+  .selfFc, .selfNativePattern {
     font-size: 15px;
     }
 
-  .selfOffering {
-    padding-top: 5px;
-  }
-
-  .userOffering {
+  .userStatus {
     padding-top: 5px;
   }
 
@@ -161,14 +157,14 @@ img.smallVivillon {
     cursor: pointer;
   }
 
-.userIgn, .userFc {
+.userIgn, .userFc, .userNativePattern {
     float: left;
     height: 23px;
     margin: 0 20px 2px 20px;
     line-height: 25px;
   }
 
-  .userFc {
+  .userFc, .userNativePattern {
     font-size: 15px;
     margin-top: 1px;
   }
@@ -195,4 +191,22 @@ img.smallVivillon {
 
 .buttons {
   margin: 15px 0 10px 0;
+}
+
+.footer {
+  text-align: center;
+  width: 990px;
+  margin: auto;
+  background-color: #aaa;
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.footer a {
+  color: white;
+}
+
+#feedbackTextarea {
+  width: 400px;
+  height: 100px;
 }
