@@ -39,15 +39,10 @@ $(function() {
   $('.toggleSender').click(function(event) {
     $(this).siblings().slideToggle();
   })
-  $('.down').click(function(event) {
-    $(this).siblings('div').slideToggle();
-    $(this).siblings('img').slideToggle();
-    $(this).slideToggle()
-  })
-  $('.up').click(function(event) {
-    $(this).siblings('div').slideToggle();
-    $(this).siblings('img').slideToggle();
-    $(this).slideToggle()
+
+ $('.up, .down').click(function(event) {
+    $(this).siblings('div, img').slideToggle();
+    $(this).slideToggle();
   })
 
 
