@@ -122,6 +122,7 @@ block content
             .userFc= user.fc
             if (user.nativePattern)
               .userNativePattern Native: #{user.nativePattern}
+            - var currentTime = new Date()
           .vivillonLists
             if (user.status)
               .userStatus

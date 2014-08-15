@@ -42,12 +42,12 @@ block content
               option(data-img-src="/images/"+name+".png" selected="selected")=name
             else
               option(data-img-src="/images/"+name+".png")=name
-      div
-        if (user.somethingElse)
-          input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse' checked='checked')
-        else
-          input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse')
-        label#somethingElseText(for='somethingElseCheckbox') I (also) want Pokémon or items other than Vivillons specified in my status
+        div
+          if (user.somethingElse)
+            input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse' checked='checked')
+          else
+            input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse')
+          label#somethingElseText(for='somethingElseCheckbox') I (also) want Pokémon or items other than Vivillons specified in my status
     .centered.buttons
       button#updateButton(type='submit') Update
       button(type='button' onclick="location.href ='/'") Cancel
