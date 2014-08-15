@@ -35,12 +35,13 @@ block content
             li Pokémon or items other than Vivillons
       
   .right.messageContainer
-    h2.messagesTitle Messages
     select.messageSort
-      option date
-      option user
+      option Date
+      option User
+    label Sort by
+    h2.messagesTitle Messages
     .messageBox
-      .dateMessages
+      .DateMessages
         each message in messages
           if (message.toFc == me.fc)
               .message
@@ -62,7 +63,7 @@ block content
               else
                 .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
                 .messageContent= message.content
-      .userMessages
+      .UserMessages
         each array, key in byUserM
             div(class = key)
               if (array[0].fromIgn == me.ign)
