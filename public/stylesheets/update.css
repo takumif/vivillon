@@ -3,8 +3,8 @@ p {
 }
 
 #statusTextarea {
-  width: 300px;
-  height: 50px;
+  width: 350px;
+  height: 65px;
 }
 
 #somethingElseCheckbox {
@@ -16,4 +16,12 @@ p {
 #somethingElseText {
   font-size: 12px;
   line-height: 20px;
+}
+
+.form-vivillon-list p {
+  margin-top: 0;
+}
+
+.form-vivillon-list {
+
 }

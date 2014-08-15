@@ -125,9 +125,21 @@ label {
   padding-bottom: 15px;
   font-size: 16px;
   border-bottom: 2px solid #ccc;
+  cursor: pointer;
 }
 
 .toggleSender ~ div{
+  display: none;
+}
+
+.down, .up {
+  float: right;
+  height: 18px;
+  padding-top: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+.up {
   display: none;
 }
 

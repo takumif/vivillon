@@ -44,15 +44,15 @@ block content
       .DateMessages
         each message in messages
           if (message.toFc == me.fc)
-              .message
-                - var date = message.date.toString()
-                - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-                .messageTime= date
-                if (message.content == 'addme')
-                  .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
-                else
-                  .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                  .messageContent= message.content
+            .message
+              - var date = message.date.toString()
+              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+              .messageTime= date
+              if (message.content == 'addme')
+                .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
+              else
+                .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+                .messageContent= message.content
           else
             .message.messageFromMe
               - var date = message.date.toString()
@@ -65,33 +65,35 @@ block content
                 .messageContent= message.content
       .UserMessages
         each array, key in byUserM
-            div(class = key)
-              if (array[0].fromIgn == me.ign)
-                -var sender = array[0].toIgn
+          div(class = key)
+            if (array[0].fromIgn == me.ign)
+              -var sender = array[0].toIgn
+            else
+              -var sender = array[0].fromIgn
+            img.down(src='/images/down.png')
+            img.up(src='/images/up.png')
+            p.toggleSender= sender
+            each message in array
+              - var date = message.date.toString()
+              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+              if (message.toFc == me.fc)
+                .message
+                  .messageTime= date
+                  if (message.content == 'addme')
+                    .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
+                  else
+                    .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+                    .messageContent= message.content
               else
-                -var sender = array[0].fromIgn
-              p.toggleSender= sender
-              each message in array
-                - var date = message.date.toString()
-                - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-                if (message.toFc == me.fc)
-                  .message
-                    .messageTime= date
-                    if (message.content == 'addme')
-                      .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
-                    else
-                      .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                      .messageContent= message.content
-                else
-                  .message.messageFromMe
-                    - var date = message.date.toString()
-                    - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-                    .messageTime= date
-                    if (message.content == 'addme')
-                      .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
-                    else
-                      .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-                      .messageContent= message.content
+                .message.messageFromMe
+                  - var date = message.date.toString()
+                  - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+                  .messageTime= date
+                  if (message.content == 'addme')
+                    .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
+                  else
+                    .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
+                    .messageContent= message.content
 
             
 

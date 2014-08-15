@@ -25,28 +25,29 @@ block content
 
     .offering
       p Currently offering:
-      select.image-picker#offeringList(multiple="multiple" name="offering" required)
-        each name in names
-          if (user.offering.indexOf(name) != -1)
-            option(data-img-src="/images/"+name+".png" selected="selected")=name
-          else
-            option(data-img-src="/images/"+name+".png")=name
+      .form-vivillon-list
+        select.image-picker#offeringList(multiple="multiple" name="offering" required)
+          each name in names
+            if (user.offering.indexOf(name) != -1)
+              option(data-img-src="/images/"+name+".png" selected="selected")=name
+            else
+              option(data-img-src="/images/"+name+".png")=name
 
     .want
       p Currently looking for:
-      select.image-picker#lookingForList(multiple="multiple" name="lookingFor")
-         each name in names
-          if (user.lookingFor.indexOf(name) != -1)
-            option(data-img-src="/images/"+name+".png" selected="selected")=name
-          else
-            option(data-img-src="/images/"+name+".png")=name
+      .form-vivillon-list
+        select.image-picker#lookingForList(multiple="multiple" name="lookingFor")
+           each name in names
+            if (user.lookingFor.indexOf(name) != -1)
+              option(data-img-src="/images/"+name+".png" selected="selected")=name
+            else
+              option(data-img-src="/images/"+name+".png")=name
       div
         if (user.somethingElse)
           input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse' checked='checked')
         else
           input#somethingElseCheckbox(name='somethingElse' type='checkbox' value='somethingElse')
         label#somethingElseText(for='somethingElseCheckbox') I (also) want Pokémon or items other than Vivillons specified in my status
-
     .centered.buttons
       button#updateButton(type='submit') Update
       button(type='button' onclick="location.href ='/'") Cancel

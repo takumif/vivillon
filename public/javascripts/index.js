@@ -33,13 +33,23 @@ $(function() {
   $('.messageSort').change(function() {
     var selection = $('.messageSort').val();
     $('.messageBox').children().css('display', 'none');
-    console.log('.'+selection+'Messages');
     $('.'+selection+'Messages').css('display', 'block');
   });
  
   $('.toggleSender').click(function(event) {
     $(this).siblings().slideToggle();
   })
+  $('.down').click(function(event) {
+    $(this).siblings('div').slideToggle();
+    $(this).siblings('img').slideToggle();
+    $(this).slideToggle()
+  })
+  $('.up').click(function(event) {
+    $(this).siblings('div').slideToggle();
+    $(this).siblings('img').slideToggle();
+    $(this).slideToggle()
+  })
+
 
   $('.toggleVivillons').click(function(event) {
     $('.irrelevant').toggle();
