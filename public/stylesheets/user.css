@@ -101,6 +101,22 @@ img {
   display: none;
 }
 
+.userMessages {
+  display: none;
+}
+
+.toggleSender {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 2px solid #ccc;
+}
+
+.toggleSender ~ div{
+  color: hotpink;
+}
+
 .addme {
   background: white;
 }

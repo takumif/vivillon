@@ -110,13 +110,29 @@ module.exports = function(app, passport) {
               Message.find().or([ { toFc : req.user.fc }, { fromFc : req.user.fc } ])
                 .sort('-date')
                 .exec(function(err, messages) {
-
-                res.render('user', {
-                  users : users,
-                  me : req.user,
-                  messages : messages,
-                  offeringList : peopleLookup(users, true),
-                  lookingForList : peopleLookup(users, false)
+                  byUserMessages = {};
+                  for (var i = 0; i < messages.length; i++) {
+                    if (messages[i].fromFc == req.user.fc) {
+                      if (byUserMessages.hasOwnProperty(messages[i].toFc)){
+                        byUserMessages[messages[i].toFc].push(messages[i]);
+                      } else {
+                        byUserMessages[messages[i].toFc] = [messages[i]];
+                      }
+                    } else {
+                      if (byUserMessages.hasOwnProperty(messages[i].fromFc)){
+                        byUserMessages[messages[i].fromFc].push(messages[i]);
+                      } else {
+                        byUserMessages[messages[i].fromFc] = [messages[i]];
+                      }
+                    }
+                  }
+                  res.render('user', {
+                    users : users,
+                    me : req.user,
+                    messages : messages,
+                    byUserM : byUserMessages,
+                    offeringList : peopleLookup(users, true),
+                    lookingForList : peopleLookup(users, false)
                 });
               })
             });

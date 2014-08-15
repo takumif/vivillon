@@ -30,6 +30,14 @@ $(function() {
     }
   });
 
+  $('.messageSort').change(function() {
+    var selection = $('.messageSort').val();
+    $('.messageBox').children().css('display', 'none');
+    console.log('.'+selection+'Messages');
+    $('.'+selection+'Messages').css('display', 'block');
+  });
+ 
+
   $('.toggleVivillons').click(function(event) {
     $('.irrelevant').toggle();
     if ($('.toggleVivillons').html() == 'Show irrelevant patterns') {
@@ -68,8 +76,17 @@ $(function() {
 
 });
 
+
+// ^^^^^  ON LOAD FUNCTIONS ENDS  ^^^^^
+// =====================================
+
 function validFC(fc) {
     return /^([0-9]{12})$/.test(fc.replace(/-/g, ''));
+}
+
+
+function sortMessages()  {
+
 }
 
 function applySelection() {

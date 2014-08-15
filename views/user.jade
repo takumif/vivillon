@@ -36,28 +36,59 @@ block content
       
   .right.messageContainer
     h2.messagesTitle Messages
+    select.messageSort
+      option date
+      option user
     .messageBox
-      each message in messages
-        if (message.toFc == me.fc)
-          .message 
-            - var date = message.date.toString()
-            - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-            .messageTime= date
-            if (message.content == 'addme')
-              .addme.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
-            else
-              .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-              .messageContent= message.content
-        else
-          .message.messageFromMe
-            - var date = message.date.toString()
-            - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
-            .messageTime= date
-            if (message.content == 'addme')
-              .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
-            else
-              .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-              .messageContent= message.content
+      .dateMessages
+        each message in messages
+          if (message.toFc == me.fc)
+              .message
+                - var date = message.date.toString()
+                - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+                .messageTime= date
+                if (message.content == 'addme')
+                  .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
+                else
+                  .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+                  .messageContent= message.content
+          else
+            .message.messageFromMe
+              - var date = message.date.toString()
+              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+              .messageTime= date
+              if (message.content == 'addme')
+                .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
+              else
+                .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
+                .messageContent= message.content
+      .userMessages
+        each array, key in byUserM
+            div(class = key)
+              p.toggleSender= array[0].fromIgn
+              each message in array
+                - var date = message.date.toString()
+                - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+                if (message.toFc == me.fc)
+                  .message
+                    .messageTime= date
+                    if (message.content == 'addme')
+                      .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
+                    else
+                      .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
+                      .messageContent= message.content
+                else
+                  .message.messageFromMe
+                    - var date = message.date.toString()
+                    - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+                    .messageTime= date
+                    if (message.content == 'addme')
+                      .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
+                    else
+                      .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
+                      .messageContent= message.content
+
+            
 
       
   .left
