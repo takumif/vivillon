@@ -37,6 +37,9 @@ $(function() {
     $('.'+selection+'Messages').css('display', 'block');
   });
  
+  $('.toggleSender').click(function(event) {
+    $(this).siblings().slideToggle();
+  })
 
   $('.toggleVivillons').click(function(event) {
     $('.irrelevant').toggle();

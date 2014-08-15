@@ -65,7 +65,11 @@ block content
       .userMessages
         each array, key in byUserM
             div(class = key)
-              p.toggleSender= array[0].fromIgn
+              if (array[0].fromIgn == me.ign)
+                -var sender = array[0].toIgn
+              else
+                -var sender = array[0].fromIgn
+              p.toggleSender= sender
               each message in array
                 - var date = message.date.toString()
                 - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
