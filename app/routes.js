@@ -63,7 +63,7 @@ module.exports = function(app, passport) {
     failureFlash : true // allow flash messages
   }), function(req, res) {
     req.user.timeOffset = req.body.timeOffset;
-    req.user.timezoneAbbr = req.body.timezoneAbbr;
+    req.user.timezoneAbbr = req.body.timezoneAbbr.replace(/[a-z0-9 ]/g, '');
     req.user.save();
     res.redirect('/success/' + req.body.fc + '/' + req.body.password);
   });

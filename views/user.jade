@@ -126,6 +126,7 @@ block content
             if (user.nativePattern)
               .userNativePattern Native: #{user.nativePattern}
             if (user.timeOffset)
+              - var timeString = user.timezoneAbbr + moment().zone(user.timeOffset).format(' hA');
               .userTimezone= timeString
           .vivillonLists
             if (user.status)
