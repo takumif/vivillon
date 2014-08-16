@@ -19,7 +19,8 @@ block content
     .vivillonLists
       .userStatus.selfStatus
         p Status
-        p= me.status
+        - var newLineStatus = me.status.replace(/(?:\r\n|\r|\n)/g, '<br>')
+        p !{newLineStatus}
       hr
       .userOffering.selfOffering
         p Offering
