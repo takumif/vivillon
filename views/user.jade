@@ -54,7 +54,8 @@ block content
                 .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
               else
                 .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                .messageContent= message.content
+                - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
+                .messageContent !{contentNewLine}
           else
             .message.messageFromMe
               - var date = message.date.toString()
@@ -64,7 +65,8 @@ block content
                 .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
               else
                 .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-                .messageContent= message.content
+                - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
+                .messageContent !{contentNewLine}
       .UserMessages
         each array, key in byUserM
           div(class = key)
@@ -85,7 +87,8 @@ block content
                     .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
                   else
                     .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                    .messageContent= message.content
+                    - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
+                    .messageContent !{contentNewLine}
               else
                 .message.messageFromMe
                   - var date = message.date.toString()
@@ -95,8 +98,8 @@ block content
                     .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
                   else
                     .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-                    .messageContent= message.content
-
+                    - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
+                    .messageContent !{contentNewLine}
             
 
       
@@ -130,7 +133,8 @@ block content
             if (user.status)
               .userStatus
                 p Status
-                p= user.status
+                - var newLineStatus = user.status.replace(/(?:\r\n|\r|\n)/g, '<br>')
+                p !{newLineStatus}
               hr
             .userOffering
               p Offering

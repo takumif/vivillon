@@ -119,6 +119,8 @@ label {
 }
 
 .toggleSender {
+  position: relative;
+  z-index: 2;
   padding-left: 3px;
   padding-top:  15px;
   margin: 0;
@@ -138,7 +140,9 @@ label {
 }
 
 .down, .up {
-  float: right;
+  position: absolute;
+  z-index: 1;
+  margin-left: 265px;
   height: 18px;
   padding-top: 15px;
   cursor: pointer;
