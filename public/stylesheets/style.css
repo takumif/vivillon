@@ -210,7 +210,7 @@ img.smallVivillon {
   color: white;
 }
 
-#feedbackTextarea {
+.wideTextarea {
   width: 400px;
   height: 100px;
 }
