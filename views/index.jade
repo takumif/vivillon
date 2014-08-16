@@ -48,6 +48,12 @@ block content
     .flashMessage= flash
     h3 Log In
     form(action='/login' method='post')
+      input#loginTimeOffsetInput(type='number' name='timeOffset')
+      input#loginTimezoneAbbrInput(type='text' name='timezoneAbbr')
+      script.
+        $('#loginTimeOffsetInput').val(moment().zone());
+        var rightNow = new Date();
+        $('#loginTimezoneAbbrInput').val(String(String(rightNow).split("(")[1]).split(")")[0]);
       .form-group#loginFc
         input.form-control#loginFcInput(type='text' name='fc' placeholder='Friend Code' required)
       .form-group#loginPassword

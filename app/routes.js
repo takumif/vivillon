@@ -40,8 +40,6 @@ module.exports = function(app, passport) {
       req.user.nativePattern = req.body.nativePattern;
       req.user.status = req.body.status;
       req.user.somethingElse = (req.body.somethingElse == 'somethingElse');
-      if (req.body.timezone && req.body.timezone != '') req.user.timezone = req.body.timezone;
-      req.user.save();
     } else {
       console.log('invalid update');
     }
@@ -52,6 +50,9 @@ module.exports = function(app, passport) {
     failureRedirect : '/', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }), function(req, res) {
+    req.user.timeOffset = req.body.timeOffset;
+    req.user.timezoneAbbr = req.body.timezoneAbbr;
+    req.user.save();
     res.redirect('/success/' + req.body.fc + '/' + req.body.password);
   });
 
@@ -135,7 +136,7 @@ module.exports = function(app, passport) {
                     byUserM : byUserMessages,
                     offeringList : peopleLookup(users, true),
                     lookingForList : peopleLookup(users, false),
-                    timeString : getTimeString(req.user.timezone)
+                    timeString : getTimeString(req.user.timeOffset, req.user.timezoneAbbr)
                 });
               })
             });
@@ -145,11 +146,16 @@ module.exports = function(app, passport) {
                 user : user,
                 asked : Boolean(addme),
                 logged_in : true,
+                timeString : getTimeString(user.timeOffset, user.timezoneAbbr)
               });
             });
           }
         } else {
-          res.render('userInfo', { user : user, logged_in : false });
+          res.render('userInfo', {
+            user : user,
+            logged_in : false, 
+            timeString : getTimeString(user.timeOffset, user.timezoneAbbr)
+          });
         }
       }
       else {
@@ -226,9 +232,9 @@ function peopleLookup(users, offering) {
   return map;
 }
 
-function getTimeString(timezone) {
-  if (timezone) {
-    return moment().tz(timezone).format('z hA');
+function getTimeString(timeOffset, timezoneAbbr) {
+  if (timeOffset && timezoneAbbr) {
+    return timezoneAbbr + moment().zone(timeOffset).format(' hA');
   }
 }
 

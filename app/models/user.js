@@ -14,7 +14,8 @@ var userSchema = mongoose.Schema({
   nativePattern  : String,
   status         : String,
   somethingElse  : Boolean,
-  timezone       : String
+  timeOffset     : Number,
+  timezoneAbbr   : String
 });
 
 // methods ======================
