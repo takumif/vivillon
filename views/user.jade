@@ -12,7 +12,7 @@ block content
       .selfIgn= me.ign
       .selfFc= me.fc
       .selfNativePattern Native: #{me.nativePattern}
-      if (me.timezone)
+      if (me.timeOffset)
         .selfTimezone= timeString
       a#logout(onclick="location.href ='/logout';") Logout
       a#update(onclick="location.href ='/update';") Update info
@@ -124,7 +124,7 @@ block content
             .userFc= user.fc
             if (user.nativePattern)
               .userNativePattern Native: #{user.nativePattern}
-            if (user.timezone)
+            if (user.timeOffset)
               .userTimezone= timeString
           .vivillonLists
             if (user.status)

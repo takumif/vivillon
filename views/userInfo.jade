@@ -9,6 +9,8 @@ block content
       .selfIgn= user.ign
       .selfFc= user.fc
       .selfNativePattern Native: #{user.nativePattern}
+      if (user.timeOffset)
+        .selfTimezone= timeString
     .vivillonLists
       if (user.status)
         .userStatus
