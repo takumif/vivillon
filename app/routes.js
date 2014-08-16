@@ -40,6 +40,7 @@ module.exports = function(app, passport) {
       req.user.nativePattern = req.body.nativePattern;
       req.user.status = req.body.status;
       req.user.somethingElse = (req.body.somethingElse == 'somethingElse');
+      req.user.save();
     } else {
       console.log('invalid update');
     }
