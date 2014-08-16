@@ -4,6 +4,17 @@ var User = require('./models/user'),
     names = require('./vivillons'),
     moment = require('moment-timezone');
 
+moment.locale('en', {
+    calendar : {
+        lastDay : '[Yesterday at] LT',
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : 'MMM DD [at] LT',
+        nextWeek : 'MMM DD [at] LT',
+        sameElse : 'MMM DD [at] LT'
+    }
+});
+
 module.exports = function(app, passport) {
 
   app.get('/', function(req, res) {
