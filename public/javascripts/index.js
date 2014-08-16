@@ -107,6 +107,13 @@ function applySelection() {
     if (lookingFor == 'All') {
       $('.othersInfo').css('display', 'block');
     }
+    else if (lookingFor == 'Vivillons I offer') {
+      $('.othersInfo').css('display', 'none');
+      people = lookingForWhatIOfferList;
+      for (var i = 0; i < people.length; i++) {
+        $('#' + people[i]).css('display', 'block');
+      }
+    }
     else {
       $('.othersInfo').css('display', 'none');
       people = lookingForList[lookingFor];
@@ -119,6 +126,13 @@ function applySelection() {
     if (lookingFor == 'All') {
       $('.othersInfo').css('display', 'none');
       people = offeringList[offering];
+      for (var i = 0; i < people.length; i++) {
+        $('#' + people[i]).css('display', 'block');
+      }
+    }
+    else if (lookingFor == 'Vivillons I offer') {
+      $('.othersInfo').css('display', 'none');
+      people = $(lookingForWhatIOfferList).filter(offeringList[offering]);
       for (var i = 0; i < people.length; i++) {
         $('#' + people[i]).css('display', 'block');
       }

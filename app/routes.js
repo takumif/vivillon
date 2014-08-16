@@ -114,30 +114,36 @@ module.exports = function(app, passport) {
               Message.find().or([ { toFc : req.user.fc }, { fromFc : req.user.fc } ])
                 .sort('-date')
                 .exec(function(err, messages) {
-                  byUserMessages = {};
-                  for (var i = 0; i < messages.length; i++) {
-                    if (messages[i].fromFc == req.user.fc) {
-                      if (byUserMessages.hasOwnProperty(messages[i].toFc)){
-                        byUserMessages[messages[i].toFc].push(messages[i]);
-                      } else {
-                        byUserMessages[messages[i].toFc] = [messages[i]];
-                      }
+
+                var lookingForList = peopleLookup(users, false);
+                var lookingForWhatIOfferList = lookingForWhatIOffer(req.user.offering, lookingForList);
+
+                byUserMessages = {};
+                for (var i = 0; i < messages.length; i++) {
+                  if (messages[i].fromFc == req.user.fc) {
+                    if (byUserMessages.hasOwnProperty(messages[i].toFc)){
+                      byUserMessages[messages[i].toFc].push(messages[i]);
                     } else {
-                      if (byUserMessages.hasOwnProperty(messages[i].fromFc)){
-                        byUserMessages[messages[i].fromFc].push(messages[i]);
-                      } else {
-                        byUserMessages[messages[i].fromFc] = [messages[i]];
-                      }
+                      byUserMessages[messages[i].toFc] = [messages[i]];
+                    }
+                  } else {
+                    if (byUserMessages.hasOwnProperty(messages[i].fromFc)){
+                      byUserMessages[messages[i].fromFc].push(messages[i]);
+                    } else {
+                      byUserMessages[messages[i].fromFc] = [messages[i]];
                     }
                   }
-                  res.render('user', {
-                    users : users,
-                    me : req.user,
-                    messages : messages,
-                    byUserM : byUserMessages,
-                    offeringList : peopleLookup(users, true),
-                    lookingForList : peopleLookup(users, false),
-                    timeString : getTimeString(req.user.timeOffset, req.user.timezoneAbbr)
+                }
+                res.render('user', {
+                  users : users,
+                  me : req.user,
+                  messages : messages,
+                  byUserM : byUserMessages,
+                  offeringList : peopleLookup(users, true),
+                  lookingForList : lookingForList,
+                  lookingForWhatIOfferList : lookingForWhatIOfferList,
+                  timeString : getTimeString(req.user.timeOffset, req.user.timezoneAbbr),
+                  moment : moment
                 });
               })
             });
@@ -237,6 +243,23 @@ function getTimeString(timeOffset, timezoneAbbr) {
   if (timeOffset && timezoneAbbr) {
     return timezoneAbbr + moment().zone(timeOffset).format(' hA');
   }
+}
+
+function lookingForWhatIOffer(offering, lookingForList) {
+  var people = [];
+
+  for (var i = 0; i < offering.length; i++) {
+
+    var peopleWithThisPattern = lookingForList[offering[i]];
+
+    for (var j = 0; j < peopleWithThisPattern.length; j++) {
+
+      if (people.indexOf(peopleWithThisPattern[j]) == -1) {
+        people.push(peopleWithThisPattern[j]);
+      }
+    }
+  }
+  return people;
 }
 
 function validVivillonList(list) {

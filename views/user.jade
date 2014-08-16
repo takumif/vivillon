@@ -5,6 +5,7 @@ block head
   script.
     var offeringList = !{JSON.stringify(offeringList)};
     var lookingForList = !{JSON.stringify(lookingForList)};
+    var lookingForWhatIOfferList = !{JSON.stringify(lookingForWhatIOfferList)};
 
 block content
   .userInfo
@@ -45,10 +46,9 @@ block content
     .messageBox
       .DateMessages
         each message in messages
+          - var date = moment(message.date).zone(me.timeOffset).calendar()
           if (message.toFc == me.fc)
             .message
-              - var date = message.date.toString()
-              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
               .messageTime= date
               if (message.content == 'addme')
                 .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
@@ -58,8 +58,6 @@ block content
                 .messageContent !{contentNewLine}
           else
             .message.messageFromMe
-              - var date = message.date.toString()
-              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
               .messageTime= date
               if (message.content == 'addme')
                 .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
@@ -78,8 +76,7 @@ block content
             img.up(src='/images/up.png')
             p.toggleSender= sender
             each message in array
-              - var date = message.date.toString()
-              - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
+              - var date = moment(message.date).zone(me.timeOffset).calendar()
               if (message.toFc == me.fc)
                 .message
                   .messageTime= date
@@ -91,8 +88,6 @@ block content
                     .messageContent !{contentNewLine}
               else
                 .message.messageFromMe
-                  - var date = message.date.toString()
-                  - date = date.slice(date.indexOf(" ", 3), date.indexOf(" ", 8)).concat(", ", date.slice(date.indexOf(" ", 14), date.lastIndexOf(":")))
                   .messageTime= date
                   if (message.content == 'addme')
                     .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
@@ -115,6 +110,7 @@ block content
       span.labelSpan for
       select.lookingForSelection
         option All
+        option Vivillons I offer
         each offer in me.offering
           option= offer
     .noOffersFound No offers found with this combination!
