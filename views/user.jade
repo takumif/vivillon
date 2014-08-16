@@ -20,8 +20,7 @@ block content
     .vivillonLists
       .userStatus.selfStatus
         p Status
-        - var newLineStatus = me.status.replace(/(?:\r\n|\r|\n)/g, '<br>')
-        p !{newLineStatus}
+        p= me.status
       hr
       .userOffering.selfOffering
         p Offering
@@ -55,8 +54,7 @@ block content
                 .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
               else
                 .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
-                .messageContent !{contentNewLine}
+                .messageContent= message.content
           else
             .message.messageFromMe
               .messageTime= date
@@ -64,8 +62,7 @@ block content
                 .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
               else
                 .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-                - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
-                .messageContent !{contentNewLine}
+                .messageContent= message.content
       .UserMessages
         each array, key in byUserM
           div(class = key)
@@ -85,8 +82,7 @@ block content
                     .addme.messageSubject <a href="/user/#{message.fromFc}"> #{message.fromIgn}</a> wants you to add them! <br> Fc: #{message.fromFc}
                   else
                     .sentMessage.messageSubject <a href="/user/#{message.fromFc}">#{message.fromIgn}</a> sent you a message:
-                    - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
-                    .messageContent !{contentNewLine}
+                    .messageContent= message.content
               else
                 .message.messageFromMe
                   .messageTime= date
@@ -94,8 +90,7 @@ block content
                     .addme.messageSubject You asked <a href="/user/#{message.toFc}">#{message.toIgn}</a> to add you.
                   else
                     .sentMessage.messageSubject You sent <a href="/user/#{message.toFc}">#{message.toIgn}</a> a message:
-                    - var contentNewLine = message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')
-                    .messageContent !{contentNewLine}
+                    .messageContent= message.content
             
 
       
@@ -130,8 +125,7 @@ block content
             if (user.status)
               .userStatus
                 p Status
-                - var newLineStatus = user.status.replace(/(?:\r\n|\r|\n)/g, '<br>')
-                p !{newLineStatus}
+                p= user.status
               hr
             .userOffering
               p Offering
