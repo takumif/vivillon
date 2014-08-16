@@ -128,14 +128,14 @@ img.smallVivillon {
   background-color: #ddd;
   font: 17px  "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-  .selfIgn, .selfFc, .selfNativePattern {
+  .selfIgn, .selfFc, .selfNativePattern, .selfTimezone {
     float: left;
     height: 23px;
     margin: auto 20px;
     line-height: 25px;
   }
 
-  .selfFc, .selfNativePattern {
+  .selfFc, .selfNativePattern, .selfTimezone {
     font-size: 15px;
     }
 
@@ -161,14 +161,14 @@ img.smallVivillon {
     cursor: pointer;
   }
 
-.userIgn, .userFc, .userNativePattern {
+.userIgn, .userFc, .userNativePattern, .userTimezone {
     float: left;
     height: 23px;
     margin: 0 20px 2px 20px;
     line-height: 25px;
   }
 
-  .userFc, .userNativePattern {
+  .userFc, .userNativePattern, .userTimezone {
     font-size: 15px;
     margin-top: 1px;
   }

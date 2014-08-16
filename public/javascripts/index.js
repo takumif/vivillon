@@ -41,7 +41,6 @@ $(function() {
     $(this).siblings('.message').slideToggle();
   })
 
-
   $('.toggleVivillons').click(function(event) {
     $('.irrelevant').toggle();
     if ($('.toggleVivillons').html() == 'Show irrelevant patterns') {
@@ -59,6 +58,8 @@ $(function() {
     applySelection();
   });
 
+  // --------- UPDATE PAGE -------------
+
   $('#updateButton').click(function(event) {
     if ($('#selectNativePattern').val() == 'Native pattern') {
       alert('Choose your native pattern!');
@@ -70,13 +71,18 @@ $(function() {
     }
   });
 
+  $('#showMap').click(function() {
+    $(this).css('display', 'none');
+    $('#timezone-picker').css('display', 'block');
+  })
+
   $('#feedbackButton').click(function(event) {
     if ($('#feedbackTextarea').val() == '') {
       event.preventDefault();
     } else {
       alert('Thanks for the feedback!');
     }
-  })
+  });
 
 });
 

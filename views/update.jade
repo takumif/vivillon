@@ -28,8 +28,10 @@ block content
 
     .timezone
       p Timezone:
-      
       include timezone
+      if (user.timezone)
+        script.
+          $('select option[value="#{user.timezone}"]').attr("selected",true);
 
     .offering
       p Currently offering:
