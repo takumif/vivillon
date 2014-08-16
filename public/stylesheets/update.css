@@ -21,3 +21,8 @@ p {
 .form-vivillon-list {
   padding-bottom: 13px;
 }
+
+.timezone-picker {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 3px 1px #ccc;
+}

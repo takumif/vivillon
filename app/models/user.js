@@ -13,7 +13,8 @@ var userSchema = mongoose.Schema({
   lookingFor     : [String],
   nativePattern  : String,
   status         : String,
-  somethingElse  : Boolean
+  somethingElse  : Boolean,
+  timezone       : String
 });
 
 // methods ======================

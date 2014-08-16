@@ -37,12 +37,8 @@ $(function() {
   });
  
   $('.toggleSender').click(function(event) {
-    $(this).siblings().slideToggle();
-  })
-
- $('.up, .down').click(function(event) {
-    $(this).siblings('div, img').slideToggle();
-    $(this).slideToggle();
+    $(this).siblings('img').toggle();
+    $(this).siblings('.message').slideToggle();
   })
 
 

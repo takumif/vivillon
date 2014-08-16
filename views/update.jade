@@ -2,11 +2,18 @@ extend layout
 
 block head
   link(rel='stylesheet', href='/stylesheets/update.css')
+  script(src='/libs/timezonepicker/lib/jquery.maphilight.min.js')
+  script(src='/libs/timezonepicker/lib/jquery.timezone-picker.min.js')
+  script(src='/javascripts/timezone_map.js')
 
 block content
   h2 Update your info!
 
   form(action='/update' method='post')
+
+    .status
+      p Status:
+      textarea#statusTextarea(name="status" placeholder="When will you be online? Are you looking for particular stats/moves/balls, or something other than Vivillons?")= user.status
 
     .nativePattern
       p Native pattern:
@@ -19,9 +26,10 @@ block content
           else
             option= name
 
-    .status
-      p Status:
-      textarea#statusTextarea(name="status" placeholder="When will you be online? Are you looking for particular stats/moves/balls, or something other than Vivillons?")= user.status
+    .timezone
+      p Timezone:
+      
+      include timezone
 
     .offering
       p Currently offering:

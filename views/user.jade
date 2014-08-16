@@ -12,6 +12,8 @@ block content
       .selfIgn= me.ign
       .selfFc= me.fc
       .selfNativePattern Native: #{me.nativePattern}
+      if (me.timezone)
+        .selfTimezone= timeString
       a#logout(onclick="location.href ='/logout';") Logout
       a#update(onclick="location.href ='/update';") Update info
     .vivillonLists

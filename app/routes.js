@@ -1,7 +1,8 @@
 var User = require('./models/user'),
     Message = require('./models/message'),
     Feedback = require('./models/feedback'),
-    names = require('./vivillons');
+    names = require('./vivillons'),
+    moment = require('moment-timezone');
 
 module.exports = function(app, passport) {
 
@@ -39,6 +40,7 @@ module.exports = function(app, passport) {
       req.user.nativePattern = req.body.nativePattern;
       req.user.status = req.body.status;
       req.user.somethingElse = (req.body.somethingElse == 'somethingElse');
+      if (req.body.timezone && req.body.timezone != '') req.user.timezone = req.body.timezone;
       req.user.save();
     } else {
       console.log('invalid update');
@@ -132,7 +134,8 @@ module.exports = function(app, passport) {
                     messages : messages,
                     byUserM : byUserMessages,
                     offeringList : peopleLookup(users, true),
-                    lookingForList : peopleLookup(users, false)
+                    lookingForList : peopleLookup(users, false),
+                    timeString : getTimeString(req.user.timezone)
                 });
               })
             });
@@ -221,6 +224,12 @@ function peopleLookup(users, offering) {
     }
   }
   return map;
+}
+
+function getTimeString(timezone) {
+  if (timezone) {
+    return moment().tz(timezone).format('z hA');
+  }
 }
 
 function validVivillonList(list) {
