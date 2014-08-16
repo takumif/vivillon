@@ -46,7 +46,7 @@ block content
     .messageBox
       .DateMessages
         each message in messages
-          - var date = moment(message.date).zone(me.timeOffset).calendar()
+          - var date = me.timeOffset ? moment(message.date).zone(me.timeOffset).calendar() : moment(message.date).calendar()
           if (message.toFc == me.fc)
             .message
               .messageTime= date
@@ -74,7 +74,7 @@ block content
             img.up(src='/images/up.png')
             p.toggleSender= sender
             each message in array
-              - var date = moment(message.date).zone(me.timeOffset).calendar()
+              - var date = me.timeOffset ? moment(message.date).zone(me.timeOffset).calendar() : moment(message.date).calendar()
               if (message.toFc == me.fc)
                 .message
                   .messageTime= date
