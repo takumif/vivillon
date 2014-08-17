@@ -3,6 +3,8 @@ $(function() {
     show_label: true
   });
 
+  //-------- INDEX PAGE ---------------
+
   $("#registerFcInput").mask('0000-0000-0000');
   $("#loginFcInput").mask('0000-0000-0000');
 
@@ -29,6 +31,12 @@ $(function() {
       event.preventDefault();
     }
   });
+
+  $('#loginTimeOffsetInput, #registerTimeOffsetInput').val(moment().zone());
+  var rightNow = new Date();
+  $('#loginTimezoneAbbrInput, #registerTimezoneAbbrInput').val(String(String(rightNow).split("(")[1]).split(")")[0]);
+
+  //----------- USER PAGE ----------------
 
   $('.messageSort').change(function() {
     var selection = $('.messageSort').val();
@@ -71,10 +79,7 @@ $(function() {
     }
   });
 
-  $('#showMap').click(function() {
-    $(this).css('display', 'none');
-    $('#timezone-picker').css('display', 'block');
-  })
+  //------------- ABOUT PAGE ------------
 
   $('#feedbackButton').click(function(event) {
     if ($('#feedbackTextarea').val() == '') {

@@ -11,6 +11,8 @@ block content
   .registration
     h3 Register
     form(action='/register' method='post')
+      input#registerTimeOffsetInput.displayNone(type='number' name='timeOffset')
+      input#registerTimezoneAbbrInput.displayNone(type='text' name='timezoneAbbr')
       .regInfo
         .form-group#ign
           input.form-control#registerIgnInput(type='text' name='ign' placeholder="In-Game Name" required)
@@ -48,12 +50,8 @@ block content
     .flashMessage= flash
     h3 Log In
     form(action='/login' method='post')
-      input#loginTimeOffsetInput(type='number' name='timeOffset')
-      input#loginTimezoneAbbrInput(type='text' name='timezoneAbbr')
-      script.
-        $('#loginTimeOffsetInput').val(moment().zone());
-        var rightNow = new Date();
-        $('#loginTimezoneAbbrInput').val(String(String(rightNow).split("(")[1]).split(")")[0]);
+      input#loginTimeOffsetInput.displayNone(type='number' name='timeOffset')
+      input#loginTimezoneAbbrInput.displayNone(type='text' name='timezoneAbbr')
       .form-group#loginFc
         input.form-control#loginFcInput(type='text' name='fc' placeholder='Friend Code' required)
       .form-group#loginPassword

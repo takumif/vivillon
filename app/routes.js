@@ -251,9 +251,9 @@ function peopleLookup(users, offering) {
 }
 
 function getTimeString(timeOffset, timezoneAbbr) {
-  if (timeOffset && timezoneAbbr) {
-    if (timezoneAbbr == 'undefined') timezoneAbbr = '';
-    return timezoneAbbr + moment().zone(timeOffset).format(' hA');
+  if (timeOffset) {
+    if (timezoneAbbr) return timezoneAbbr + moment().zone(timeOffset).format(' hA');
+    else return moment().zone(timeOffset).format('hA');
   }
 }
 

@@ -105,11 +105,7 @@
     margin-right: 70px;
   }
 
-  #loginTimeOffsetInput {
-    display: none;
-  }
-
-  #loginTimezoneAbbrInput {
+  .displayNone {
     display: none;
   }
 
