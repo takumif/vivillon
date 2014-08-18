@@ -1,4 +1,7 @@
 $(function() {
+
+  socket = io.connect('http://localhost:8080');
+
   $(".image-picker").imagepicker({
     show_label: true
   });
@@ -66,6 +69,23 @@ $(function() {
     applySelection();
   });
 
+  socket.on('a', function(data) {
+    console.log(data);
+  });
+
+  socket.on('userOnline', function(data) {
+    console.log('user came online');
+    if (data.fc) {
+      makeUserOnline(data.fc);
+    }
+  });
+
+  socket.on('userOffline', function(data) {
+    if (data.fc) {
+      makeUserOffline(data.fc);
+    }
+  })
+
   // --------- UPDATE PAGE -------------
 
   $('#updateButton').click(function(event) {
@@ -97,11 +117,6 @@ $(function() {
 
 function validFC(fc) {
     return /^([0-9]{12})$/.test(fc.replace(/-/g, ''));
-}
-
-
-function sortMessages()  {
-
 }
 
 function applySelection() {
@@ -155,4 +170,12 @@ function applySelection() {
   } else {
     $('.noOffersFound').css('display', 'none');
   }
+}
+
+function makeUserOnline(fc) {
+  $('.topbar[fc="' + fc + '"]').addClass('userOnline');
+}
+
+function makeUserOffline(fc) {
+  $('.topbar[fc="' + fc + '"]').removeClass('userOnline');
 }

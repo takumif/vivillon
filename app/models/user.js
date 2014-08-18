@@ -15,7 +15,8 @@ var userSchema = mongoose.Schema({
   status         : String,
   somethingElse  : Boolean,
   timeOffset     : Number,
-  timezoneAbbr   : String
+  timezoneAbbr   : String,
+  sockets        : [String]
 });
 
 // methods ======================

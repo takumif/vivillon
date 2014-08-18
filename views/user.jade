@@ -9,7 +9,7 @@ block head
 
 block content
   .userInfo
-    .topbar
+    .topbar(fc='#{me.fc}' class='#{me.sockets.length ? "userOnline" : ""}')
       .selfIgn= me.ign
       .selfFc= me.fc
       .selfNativePattern Native: #{me.nativePattern}
@@ -113,7 +113,7 @@ block content
     each user in users
       if (user.fc != me.fc)
         .userInfo.othersInfo(id='#{user.fc}')
-          .topbar
+          .topbar(fc='#{user.fc}' class='#{user.sockets.length ? "userOnline" : ""}')
             .userIgn
               a(href='/user/#{user.fc}')= user.ign
             .userFc= user.fc

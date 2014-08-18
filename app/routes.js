@@ -1,7 +1,7 @@
 var User = require('./models/user'),
     Message = require('./models/message'),
     Feedback = require('./models/feedback'),
-    names = require('./vivillons'),
+    names = require('../config/vivillons'),
     moment = require('moment-timezone');
 
 moment.locale('en', {
@@ -225,7 +225,16 @@ module.exports = function(app, passport) {
       fb.save();
     }
     res.redirect('/');
-  })
+  });
+
+  app.get('/init', function(req, res) {
+    User.find(function(err, users) {
+      for (var i = 0; i < users.length; i++) {
+        users[i].sockets = [];
+        users[i].save();
+      }
+    });
+  });
 
 };
 

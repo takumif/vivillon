@@ -168,8 +168,12 @@ img.smallVivillon {
     line-height: 25px;
   }
 
-  .userFc, .userNativePattern, .userTimezone {
+  .userIgn {
     font-size: 15px;
+  }
+
+  .userFc, .userNativePattern, .userTimezone {
+    font-size: 13px;
     margin-top: 1px;
   }
 
@@ -213,4 +217,8 @@ img.smallVivillon {
 .wideTextarea {
   width: 400px;
   height: 100px;
+}
+
+.userOnline {
+  border-left: limegreen solid 4px;
 }
