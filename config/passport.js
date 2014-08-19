@@ -79,6 +79,7 @@ module.exports = function(passport) {
                 newUser.somethingElse = (req.body.somethingElse == 'somethingElse');
                 newUser.timeOffset = req.body.timeOffset;
                 newUser.timezoneAbbr = req.body.timezoneAbbr.replace(/[a-z0-9 ]/g, '');
+                newUser.sockets = [];
         // save the user
                 newUser.save(function(err) {
                     if (err)

@@ -16,7 +16,8 @@ var userSchema = mongoose.Schema({
   somethingElse  : Boolean,
   timeOffset     : Number,
   timezoneAbbr   : String,
-  sockets        : [String]
+  sockets        : [String],
+  online         : Boolean
 });
 
 // methods ======================

@@ -1,5 +1,6 @@
 $(function() {
 
+  //socket = io.connect('http://www.gvts.co');
   socket = io.connect('http://localhost:8080');
 
   $(".image-picker").imagepicker({

@@ -1,4 +1,5 @@
 var User = require('./models/user');
+var Socket = require('./models/socket');
 
 module.exports = function(io) {
 
@@ -10,31 +11,83 @@ module.exports = function(io) {
 
     if (socket.request.user.logged_in) {
 
+      var newSocket = new Socket();
+      newSocket.id = socket.id;
+      newSocket.userFc = socket.request.user.fc;
+      newSocket.created = new Date();
+      newSocket.save();
+
       User.findOne({ fc : socket.request.user.fc }, function(err, user) {
-        if (user) {
-          user.sockets.push(socket.id);
+
+        if (!user.online) {
+
+          user.online = true;
           user.save();
 
-          console.log('emitting userOnline');
           io.sockets.emit('userOnline', { fc : user.fc });
+          console.log('userOnline');
         }
-      });
+      })
 
       socket.on('disconnect', function() {
 
-        User.findOne({ fc : socket.request.user.fc }, function(err, user) {
-          if (user && user.sockets.indexOf(socket.id) != -1) {
-            user.sockets.splice(user.sockets.indexOf(socket.id), 1);
-            user.save();
+        Socket.find({ userFc : socket.request.user.fc }, function(err, sockets) {
 
-            if (user.sockets.length == 0) {
+          if (sockets.length == 1) {
+            User.findOne({ fc : socket.request.user.fc }, function(err, user) {
+
+              user.online = false;
+              user.save();
+
               io.sockets.emit('userOffline', { fc : user.fc });
-            }
+              console.log('userOffline');
+            });
           }
+
+          Socket.findOne({ id : socket.id }, function(err, s) {
+            if (s) s.remove();
+          });
+          console.log('removing: ' + socket.id);
         });
       });
 
-    };
-
+    }
   });
+
+  updateOnlineInfo();
+}
+
+function updateOnlineInfo() {
+
+  User.find({}, function(err, users) {
+
+    for (var i = 0; i < users.length; i++) {
+
+      var user = users[i];
+
+      user.online = false;
+      user.save();
+
+      Socket.find({ userFc : user.fc }, function(err, sockets) {
+
+        for (var j = 0; j < sockets.length; j++) {
+          if ((new Date()) - sockets[j].created > 3 * 60 * 60 * 1000) {
+            Socket.remove({ id : sockets[j].id });
+          }
+        }
+
+        if (sockets.length != 0) {
+          User.findOne({ fc : sockets[0].userFc }, function(err, user) {
+            user.online = true;
+            user.save();
+          })
+        }
+      });
+    } 
+  });
+
+  setTimeout(function() {
+    console.log('updateOnlineInfo');
+    updateOnlineInfo();
+  }, 10 * 1000);
 }

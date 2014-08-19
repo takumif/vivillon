@@ -5,7 +5,7 @@ block head
 
 block content
   .userInfo
-    .topbar(fc='#{user.fc}' class='#{user.sockets.length ? "userOnline" : ""}')
+    .topbar(fc='#{user.fc}' class='#{user.online ? "userOnline" : ""}')
       .selfIgn= user.ign
       .selfFc= user.fc
       .selfNativePattern Native: #{user.nativePattern}
