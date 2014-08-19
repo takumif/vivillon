@@ -113,7 +113,7 @@ block content
     #profiles
       each user in users
         if (user.fc != me.fc)
-          .userInfo.othersInfo(class='#{user.online ? "userOnline" : ""}' fc='#{user.fc}')
+          .userInfo.othersInfo(class='#{user.online ? "userOnline" : ""}' fc='#{user.fc}' id='profile-#{user.fc}')
             .topbar(fc='#{user.fc}')
               .userIgn
                 a(href='/user/#{user.fc}')= user.ign

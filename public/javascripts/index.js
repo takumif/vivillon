@@ -1,7 +1,7 @@
 $(function() {
 
-  //socket = io.connect('http://www.gvts.co');
-  socket = io.connect('http://localhost:8080');
+  socket = io.connect('http://www.gvts.co');
+  //socket = io.connect('http://localhost:8080');
 
   $(".image-picker").imagepicker({
     show_label: true
@@ -26,12 +26,6 @@ $(function() {
       event.preventDefault();
     } else if ($('#selectNativePattern').val() == 'Native pattern') {
       alert('Choose your native pattern!');
-      event.preventDefault();
-    }
-  });
-
-  $('#sendButton').click(function(event) {
-    if ($('#messageTextarea').val() == '') {
       event.preventDefault();
     }
   });
@@ -89,6 +83,16 @@ $(function() {
 
   sortProfiles();
 
+  // --------- USERINFO PAGE -----------------
+
+  $('#sendButton').click(function(event) {
+    if ($('#messageTextarea').val() == '') {
+      event.preventDefault();
+    } else {
+      $('#sendButton').css('display', 'none');
+    }
+  });
+
   // --------- UPDATE PAGE -------------
 
   $('#updateButton').click(function(event) {
@@ -134,14 +138,14 @@ function applySelection() {
       $('.othersInfo').css('display', 'none');
       people = lookingForWhatIOfferList;
       for (var i = 0; i < people.length; i++) {
-        $('#' + people[i]).css('display', 'block');
+        $('#profile-' + people[i]).css('display', 'block');
       }
     }
     else {
       $('.othersInfo').css('display', 'none');
       people = lookingForList[lookingFor];
       for (var i = 0; i < people.length; i++) {
-        $('#' + people[i]).css('display', 'block');
+        $('#profile-' + people[i]).css('display', 'block');
       }
     }
   }
@@ -150,21 +154,21 @@ function applySelection() {
       $('.othersInfo').css('display', 'none');
       people = offeringList[offering];
       for (var i = 0; i < people.length; i++) {
-        $('#' + people[i]).css('display', 'block');
+        $('#profile-' + people[i]).css('display', 'block');
       }
     }
     else if (lookingFor == 'Vivillons I offer') {
       $('.othersInfo').css('display', 'none');
       people = $(lookingForWhatIOfferList).filter(offeringList[offering]);
       for (var i = 0; i < people.length; i++) {
-        $('#' + people[i]).css('display', 'block');
+        $('#profile-' + people[i]).css('display', 'block');
       }
     }
     else {
       $('.othersInfo').css('display', 'none');
       people = $(lookingForList[lookingFor]).filter(offeringList[offering]);
       for (var i = 0; i < people.length; i++) {
-        $('#' + people[i]).css('display', 'block');
+        $('#profile-' + people[i]).css('display', 'block');
       }
     }
   }
@@ -185,10 +189,9 @@ function makeUserOffline(fc) {
 }
 
 function sortProfiles() {
-  var elem = $('#profiles').children().sort(sortMe);
-  $('#profiles').append(elem);
+  $('#profiles .userOnline').insertBefore($('#profiles').children()[0]);
 }
 
 function sortMe(a, b) {
-    return a.className < b.className;
+    return ;
 }

@@ -72,7 +72,9 @@ function updateOnlineInfo() {
 
         for (var j = 0; j < sockets.length; j++) {
           if ((new Date()) - sockets[j].created > 3 * 60 * 60 * 1000) {
-            Socket.remove({ id : sockets[j].id });
+            Socket.findOne({ id : sockets[j].id }, function(err, s) {
+              if (s) s.remove();
+            });
           }
         }
 
