@@ -89,5 +89,5 @@ function updateOnlineInfo() {
   setTimeout(function() {
     console.log('updateOnlineInfo');
     updateOnlineInfo();
-  }, 10 * 1000);
+  }, 5 * 60 * 1000);
 }

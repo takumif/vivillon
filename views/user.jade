@@ -8,8 +8,8 @@ block head
     var lookingForWhatIOfferList = !{JSON.stringify(lookingForWhatIOfferList)};
 
 block content
-  .userInfo
-    .topbar.userOnline(fc='#{me.fc}')
+  .userInfo.userOnline
+    .topbar(fc='#{me.fc}')
       .selfIgn= me.ign
       .selfFc= me.fc
       .selfNativePattern Native: #{me.nativePattern}
@@ -110,41 +110,42 @@ block content
         each offer in me.offering
           option= offer
     .noOffersFound No offers found with this combination!
-    each user in users
-      if (user.fc != me.fc)
-        .userInfo.othersInfo(id='#{user.fc}')
-          .topbar(fc='#{user.fc}' class='#{user.online ? "userOnline" : ""}')
-            .userIgn
-              a(href='/user/#{user.fc}')= user.ign
-            .userFc= user.fc
-            if (user.nativePattern)
-              .userNativePattern Native: #{user.nativePattern}
-            if (user.timeOffset)
-              - var timeString = user.timezoneAbbr + moment().zone(user.timeOffset).format(' hA');
-              .userTimezone= timeString
-          .vivillonLists
-            if (user.status)
-              .userStatus
-                p Status
-                p= user.status
-              hr
-            .userOffering
-              p Offering
-              each offering in user.offering
-                if (me.lookingFor.indexOf(offering) != -1)
-                  img.smallVivillon(src='/images/#{offering}.png' title='#{offering}')
-                else
-                  img.smallVivillon.irrelevant(src='/images/#{offering}.png' style='display: none;' title='#{offering}')
-            hr
-            .userLookingFor
-              p Looking for
-              if (user.lookingFor && user.lookingFor.length)
-                each lookingFor in user.lookingFor
-                  if (me.offering.indexOf(lookingFor) != -1)
-                    img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+    #profiles
+      each user in users
+        if (user.fc != me.fc)
+          .userInfo.othersInfo(class='#{user.online ? "userOnline" : ""}' fc='#{user.fc}')
+            .topbar(fc='#{user.fc}')
+              .userIgn
+                a(href='/user/#{user.fc}')= user.ign
+              .userFc= user.fc
+              if (user.nativePattern)
+                .userNativePattern Native: #{user.nativePattern}
+              if (user.timeOffset)
+                - var timeString = user.timezoneAbbr + moment().zone(user.timeOffset).format(' hA');
+                .userTimezone= timeString
+            .vivillonLists
+              if (user.status)
+                .userStatus
+                  p Status
+                  p= user.status
+                hr
+              .userOffering
+                p Offering
+                each offering in user.offering
+                  if (me.lookingFor.indexOf(offering) != -1)
+                    img.smallVivillon(src='/images/#{offering}.png' title='#{offering}')
                   else
-                    img.smallVivillon.irrelevant(src='/images/#{lookingFor}.png' style='display: none;' title='#{lookingFor}')
-              if (user.somethingElse)
-                ul
-                  li Pokémon or items other than Vivillons
+                    img.smallVivillon.irrelevant(src='/images/#{offering}.png' style='display: none;' title='#{offering}')
+              hr
+              .userLookingFor
+                p Looking for
+                if (user.lookingFor && user.lookingFor.length)
+                  each lookingFor in user.lookingFor
+                    if (me.offering.indexOf(lookingFor) != -1)
+                      img.smallVivillon(src='/images/#{lookingFor}.png' title='#{lookingFor}')
+                    else
+                      img.smallVivillon.irrelevant(src='/images/#{lookingFor}.png' style='display: none;' title='#{lookingFor}')
+                if (user.somethingElse)
+                  ul
+                    li Pokémon or items other than Vivillons
 

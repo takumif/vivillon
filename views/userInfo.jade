@@ -4,8 +4,8 @@ block head
   link(rel='stylesheet' href='/stylesheets/user.css')
 
 block content
-  .userInfo
-    .topbar(fc='#{user.fc}' class='#{user.online ? "userOnline" : ""}')
+  .userInfo(class='#{user.online ? "userOnline" : ""}')
+    .topbar(fc='#{user.fc}')
       .selfIgn= user.ign
       .selfFc= user.fc
       .selfNativePattern Native: #{user.nativePattern}

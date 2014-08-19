@@ -87,6 +87,8 @@ $(function() {
     }
   })
 
+  sortProfiles();
+
   // --------- UPDATE PAGE -------------
 
   $('#updateButton').click(function(event) {
@@ -174,9 +176,19 @@ function applySelection() {
 }
 
 function makeUserOnline(fc) {
-  $('.topbar[fc="' + fc + '"]').addClass('userOnline');
+  $('.othersInfo[fc="' + fc + '"]').addClass('userOnline');
+  $('.othersInfo[fc="' + fc + '"]').insertBefore($('#profiles').children()[0]);
 }
 
 function makeUserOffline(fc) {
-  $('.topbar[fc="' + fc + '"]').removeClass('userOnline');
+  $('.othersInfo[fc="' + fc + '"]').removeClass('userOnline');
+}
+
+function sortProfiles() {
+  var elem = $('#profiles').children().sort(sortMe);
+  $('#profiles').append(elem);
+}
+
+function sortMe(a, b) {
+    return a.className < b.className;
 }

@@ -219,6 +219,6 @@ img.smallVivillon {
   height: 100px;
 }
 
-.userOnline {
+.userOnline .topbar {
   border-left: limegreen solid 4px;
 }
